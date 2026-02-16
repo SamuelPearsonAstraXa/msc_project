@@ -1,0 +1,74 @@
+/* ================= ADS ================= */
+
+.ad {
+    background-color: var(--bg-ad);
+    border: 2px dashed #444;
+    color: var(--text-muted);
+    transition: var(--transition);
+    text-align: center;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+}
+
+.ad p {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* Top Banner */
+.ad-top {
+    max-width: 1100px;
+    margin: 20px auto;
+    height: 90px;
+}
+
+/* Horizontal Ad */
+.ad-horizontal {
+    height: 120px;
+}
+
+/* Sidebar Ad */
+.ad-sidebar {
+    height: 600px;
+    position: sticky;
+    top: 100px;
+}
+
+/* In-feed Ad */
+.ad-infeed {
+    height: 250px;
+    grid-column: span 2;
+}
+
+/* .ad {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: var(--transition);
+} */
+
+.ad:hover {
+    background: var(--bg-ad-soft);
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .ad-infeed {
+        grid-column: span 1;
+    }
+
+    .ad-sidebar {
+        height: 250px;
+        position: relative;
+        top: 0;
+    }
+}

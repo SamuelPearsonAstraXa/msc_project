@@ -1,0 +1,104 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: var(--bg-main);
+    transition: var(--transition);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 5;
+}
+
+.nav ul, .left-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.left-links button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-main);
+    transition: color 500ms ease-in-out;
+}
+
+.nav a, .left-links a{
+    text-decoration: none;
+    color: var(--text-main);
+    position: relative;
+    font-weight: 500;
+    transition: color 500ms ease-in-out;
+    font-size: 1.6rem;
+}
+
+.left-links a{
+    font-weight: 600;
+}
+
+.nav a:hover,
+.left-links a:hover, .left-links button:hover {
+    color: var(--accent);
+}
+
+.nav a::after, .left-links a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+.nav a:hover::after, .left-links a:hover::after {
+    width: 100%;
+}
+
+.theme-toggle {
+    background: var(--bg-main);
+    border: none;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-main);
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg);
+}
+
+.search-box{
+    position: relative;
+    width: 30rem;
+}
+
+.search-box input{
+    padding: 1rem;
+    padding-right: 4rem;
+    border: 1px solid var(--text-main);
+    /* border-radius: 1rem; */
+    outline-color: var(--accent);
+    background-color: var(--bg-soft);
+    color: var(--text-main);
+    width: 100%;
+}
+
+.search-box input::placeholder{
+    color: var(--text-main);
+}
+
+.search-box button{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--text-main);
+}

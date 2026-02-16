@@ -1,0 +1,46 @@
+/* SIDEBAR */
+.sidebar {
+    padding: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 0.8rem;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+.sidebar li i{
+    width: 3rem;
+}
+
+.sidebar li a{
+    text-decoration: none;
+    color: var(--text-main);
+    position: relative;
+    font-weight: 500;
+    transition: color 500ms ease-in-out;
+    font-size: 1.6rem;
+}
+
+.sidebar li a:hover {
+    color: var(--accent);
+}
+
+.sidebar li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+.sidebar li a:hover::after {
+    width: 100%;
+}

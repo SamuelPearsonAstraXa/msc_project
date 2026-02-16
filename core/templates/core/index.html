@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/index.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Latest Movie Updates</h1>
+            <p>Your daily dose of movie news, leaks, and behind-the-scenes secrets.</p>
+        </div>
+    </section>
+
+    <!-- MAIN WRAPPER -->
+<div class="main-layout">
+
+    <!-- LEFT CONTENT -->
+    <main class="main-content">
+
+        <!-- FEATURED ARTICLE -->
+        <section class="featured">
+            <div class="featured-image">
+                <img src="{% static 'images/image.jpg' %}" alt="Featured Movie">
+            </div>
+            <div class="featured-info">
+                <span class="tag">Breaking</span>
+                <h2>Upcoming Blockbuster Finally Revealed</h2>
+                <p>Exclusive details about the most anticipated movie of the year.</p>
+                <a href="">Read Full Story</a>
+            </div>
+        </section>
+
+        <!-- FEATURED BOTTOM AD -->
+        <div class="ad ad-horizontal">
+            <p>Advertisement</p>
+            <!-- Google AdSense Code Here -->
+        </div>
+
+
+        <!-- POSTS GRID -->
+        <section class="posts" id="posts_container">
+            <!-- JS inserts posts here -->
+        </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <h3>Trending Now</h3>
+        <ul>
+            <li><a href=""><i class="fas fa-fire"></i> Top 10 Movies This Week</a></li>
+            <li><a href=""><i class="fas fa-mosquito"></i> Casting Rumors</a></li>
+            <li><a href=""><i class="fas fa-video"></i> Trailer Breakdowns</a></li>
+            <li><a href=""><i class="fas fa-bomb"></i> Biggest Leaks</a></li>
+        </ul>
+        <!-- SIDEBAR AD -->
+        <div class="ad ad-sidebar">
+            <p>Advertisement</p>
+            <!-- Google AdSense Code Here -->
+        </div>
+    </aside>
+
+
+</div>
+    <!-- JS -->
+    <script src="{% static 'core/scripts/index.js' %}"></script>
+</main>
+{% endblock content %}

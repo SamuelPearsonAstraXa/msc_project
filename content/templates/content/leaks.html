@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'content/styles/styles.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <section class="page-header">
+    <h1>Exclusive Leaks</h1>
+</section>
+
+<div class="main-layout">
+
+    <main class="category-content">
+
+        <div class="ad ad-horizontal">
+            <p>Advertisement</p>
+        </div>
+
+        <section id="categoryPosts" class="posts"></section>
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="ad ad-sidebar">
+            <p>Advertisement</p>
+        </div>
+    </aside>
+
+</div>
+
+<script src="{% static 'scripts/category.js' %}"></script>
+<script>
+    loadCategory("leaks");
+</script>
+
+</main>
+{% endblock content %}

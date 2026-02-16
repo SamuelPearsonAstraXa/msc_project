@@ -1,0 +1,25 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    padding: 40px;
+    align-items: start; /* prevents stretching */
+}
+
+/* PAGE HEADER */
+.page-header {
+    padding: 40px;
+    background: var(--bg-card);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 36px;
+}
+
+/* CATEGORY PAGE */
+.category-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
