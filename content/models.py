@@ -15,7 +15,7 @@ class Tag(models.Model):
 
 class PostType(models.TextChoices):
     NEWS = 'news'
-    LEAK = 'leak'
+    LEAK = 'leaks'
     DID_YOU_KNOW = 'did_you_know'
     BEHIND_SCENES = 'behind_scenes'
 
@@ -24,7 +24,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     post_type = models.CharField(max_length=30, choices=PostType.choices)
     featured_image = models.ImageField(upload_to='posts/featured_images')
-    thumbnail = models.ImageField(upload_to='posts/thumbnails')
+    thumbnail = models.ImageField(upload_to='posts/thumbnails', blank=True)
     content = models.TextField(blank=True, default='')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True)

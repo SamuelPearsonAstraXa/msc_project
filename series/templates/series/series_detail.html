@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'series/styles/series_detail.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'series/scripts/series_detail.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <!-- HERO SECTION -->
+<section class="media-hero" id="mediaHero">
+    <div class="media-overlay">
+        <h1 id="mediaTitle">{{ series.title }}</h1>
+        <p id="mediaTagline"></p>
+
+        <div class="media-meta">
+            <span id="mediaYear">{{ series.release_date }}</span>
+            <span id="mediaGenre">{{ series.genre }}</span>
+            <span class="rating">⭐ <span id="mediaRating">{{ series.rating }}</span>/10</span>
+        </div>
+    </div>
+</section>
+
+<div class="main-layout">
+
+<main class="media-content">
+    <input type="hidden" name="bg-img" id="bg-img" value="{{ series.thumbnail.url }}">
+
+    <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2>Synopsis</h2>
+        <p id="mediaDescription">{{ series.description }}</p>
+
+        <h2>Cast</h2>
+        <div class="cast-grid" id="castGrid">
+            {% for actor in series.cast.all %}
+                <div class="cast-card">
+                    <img src="{{ actor.thumbnail.url }}">
+                    <p>{{ actor.name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2 style="display: none;">Trailer</h2>
+        <div class="trailer-container" style="display: none;">
+            <iframe id="mediaTrailer" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <h2>Related Series</h2>
+        <div class="related-grid" id="relatedMedia">
+            {% for r_series in related_series %}
+                {% if r_series.id != series.id %}
+                    <a href="{% url 'series:detail' r_series.id %}" class="post-card">
+                        <img src="{{ r_series.thumbnail.url }}">
+                        <div class="content">
+                            <h4>{{ r_series.title }}</h4>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="ad ad-sidebar"><p>Advertisement</p></div>
+    </aside>
+
+    </div>
+</main>
+{% endblock content %}

@@ -5,4 +5,5 @@ app_name = 'core'
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
+    path('fetch_posts/', views.fetch_posts, name='fetch-data'),
 ]

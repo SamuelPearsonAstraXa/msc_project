@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'content/styles/styles.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+<div class="main-layout">
+
+<main class="detail-content">
+
+    <h1 id="detailTitle">{{ post.title }}</h1>
+
+    <div class="meta">By {{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
+
+    <img id="detailImage" class="detail-image">
+
+    <div class="ad ad-horizontal">
+        <p>Advertisement</p>
+    </div>
+
+    <p id="detailText"></p>
+
+    <div class="ad ad-horizontal">
+        <p>Advertisement</p>
+    </div>
+
+    <h3 class="related-title">Related Articles</h3>
+    <div class="related-grid" id="relatedPosts"></div>
+
+</main>
+
+<aside class="sidebar">
+    <div class="ad ad-sidebar">
+        <p>Advertisement</p>
+    </div>
+</aside>
+
+</div>
+</main>
+{% endblock content %}

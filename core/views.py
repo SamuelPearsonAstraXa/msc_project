@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.generic import TemplateView
+from content.models import Post
 
 class HomeView(TemplateView):
     template_name = 'core/index.html'
@@ -8,3 +10,18 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
         return context
+    
+def fetch_posts(request):
+    posts = []
+    p_results = Post.objects.all()
+    for p_result in p_results:
+        result = {
+            'id': p_result.id,
+            'title': p_result.title,
+            'thumbnail': p_result.thumbnail.url,
+            'content': p_result.content,
+            'post_type': p_result.post_type,
+            'slug': p_result.slug,
+        }
+        posts.append(result)
+    return JsonResponse({'my_response':'This is the response.','posts':posts})

@@ -11,6 +11,7 @@
 {% endblock styles %}
 
 {% block scripts %}
+<script src="{% static 'movies/scripts/movies.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block content %}
@@ -30,9 +31,9 @@
         </aside>
     </div>
 
-    <script src="{% static 'scripts/category.js' %}"></script>
+    <!-- <script src="{% static 'scripts/category.js' %}"></script>
     <script>
-        loadCategory("movies");
-    </script>
+        loadCategory("movies")
+    </script> -->
 </main>
 {% endblock content %}

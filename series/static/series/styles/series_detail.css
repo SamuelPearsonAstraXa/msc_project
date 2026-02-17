@@ -1,0 +1,120 @@
+/* ================= MEDIA DETAIL ================= */
+
+.media-hero {
+    height: 45rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: var(--radius);
+    margin: 4rem;
+    overflow: hidden;
+}
+
+.media-overlay {
+    position: absolute;
+    bottom: 4rem;
+    left: 4rem;
+    background: rgba(0,0,0,0.6);
+    padding: 3rem;
+    border-radius: var(--radius);
+    max-width: 60rem;
+}
+
+.media-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+}
+
+.media-content {
+    background: var(--bg-card);
+    padding: 4rem;
+    border-radius: var(--radius);
+}
+
+.media-content h2{
+    margin-top: 5rem;
+}
+
+.cast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); */
+    gap: 2rem;
+    margin-top: 2rem;
+    background-color: var(--bg-soft);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.cast-card {
+    text-align: center;
+}
+
+.cast-card img {
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.trailer-container iframe {
+    width: 100%;
+    height: 40rem;
+    border-radius: var(--radius);
+}
+
+
+
+
+
+.detail-content {
+    padding: 4rem;
+    background: #1e1e1e;
+    border-radius: 12px;
+}
+
+.detail-image {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 12px;
+}
+
+.meta {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.detail-content {
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: var(--radius);
+    max-width: 850px;
+}
+
+.detail-content h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.detail-content p {
+    font-size: 17px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.detail-image {
+    border-radius: var(--radius);
+    box-shadow: 0 15px 4rem rgba(0,0,0,0.6);
+}
+
+.related-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
+}
