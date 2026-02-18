@@ -21,22 +21,33 @@
 
     <h1 id="detailTitle">{{ post.title }}</h1>
 
-    <div class="meta">By Admin | Jan 2026</div>
+    <div class="meta">{{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
 
-    <img id="detailImage" class="detail-image">
+    <img src="{{ post.featured_image.url }}" id="detailImage" class="detail-image">
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
-    <p id="detailText"></p>
+    <div id="detailText">{% lorem 5 p %}</div>
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
     <h3 class="related-title">Related Articles</h3>
-    <div class="related-grid" id="relatedPosts"></div>
+    <div class="related-grid" id="relatedPosts">
+        {% for r_post in related_posts %}
+            {% if r_post.id != post.id %}
+                <div class="post-card">
+                    <img src="{{ r_post.thumbnail.url }}">
+                    <div class="content">
+                        <h4>{{ r_post.title }}</h4>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </main>
 

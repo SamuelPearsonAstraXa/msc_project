@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/index.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+
+        <main class="main-content">
+            <form class="create-container" action="" method="post">
+                {% csrf_token %}
+                {{ form.as_div }}
+                <button type="submit">Send Message</button>
+            </form>
+            <!-- POSTS GRID -->
+            <section class="posts" id="posts_container">
+                <!-- JS inserts posts here -->
+            </section>
+
+        </main>
+</main>
+{% endblock content %}

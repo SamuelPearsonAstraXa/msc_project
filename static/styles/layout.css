@@ -177,3 +177,48 @@ footer ul li a:hover{
     transform: translateY(-8px);
     box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
 }
+
+.detail-content {
+    padding: 40px;
+    background: #1e1e1e;
+    border-radius: 12px;
+}
+
+.detail-image {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 12px;
+}
+
+.create-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 60px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+}
+
+.create-container input,
+.create-container select,
+.create-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    background: var(--bg-main);
+    border: 1px solid #333;
+    color: var(--text-main);
+    resize: none;
+}
+
+.create-container button {
+    padding: 12px;
+    background: var(--accent-gradient);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: opacity 500ms ease-in-out;
+}
+
+.create-container button:hover {
+    opacity: 0.8;
+}

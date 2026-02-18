@@ -24,6 +24,7 @@
     border: none;
     color: var(--text-main);
     transition: color 500ms ease-in-out;
+    display: none;
 }
 
 .nav a, .left-links a{

@@ -1,7 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from content.models import Post
+from .forms import ContactForm
+
+class ContactUsView(CreateView):
+    form_class = ContactForm
+    template_name = 'core/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Contact us'
+        return context
 
 class HomeView(TemplateView):
     template_name = 'core/index.html'
@@ -9,6 +19,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
+        context['featured_post'] = Post.objects.filter(is_featured=True)[0]
         return context
     
 def fetch_posts(request):

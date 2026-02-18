@@ -32,13 +32,13 @@
         <!-- FEATURED ARTICLE -->
         <section class="featured">
             <div class="featured-image">
-                <img src="{% static 'images/image.jpg' %}" alt="Featured Movie">
+                <img src="{{ featured_post.featured_image.url }}" alt="{{ featured_post.title }}">
             </div>
             <div class="featured-info">
-                <span class="tag">Breaking</span>
-                <h2>Upcoming Blockbuster Finally Revealed</h2>
-                <p>Exclusive details about the most anticipated movie of the year.</p>
-                <a href="">Read Full Story</a>
+                <span class="tag"><i class="fas fa-arrow-turn-up"></i> Trending now</span>
+                <h2>{{ featured_post.title }}</h2>
+                <p>{{ featured_post.title }}</p>
+                <a href="{% url 'content:news_detail' featured_post.id %}">Read Full Story</a>
             </div>
         </section>
 
@@ -61,8 +61,8 @@
         <h3>Trending Now</h3>
         <ul>
             <li><a href=""><i class="fas fa-fire"></i> Top 10 Movies This Week</a></li>
-            <li><a href=""><i class="fas fa-mosquito"></i> Casting Rumors</a></li>
-            <li><a href=""><i class="fas fa-video"></i> Trailer Breakdowns</a></li>
+            <!-- <li><a href=""><i class="fas fa-mosquito"></i> Casting Rumors</a></li>
+            <li><a href=""><i class="fas fa-video"></i> Trailer Breakdowns</a></li> -->
             <li><a href=""><i class="fas fa-bomb"></i> Biggest Leaks</a></li>
         </ul>
         <!-- SIDEBAR AD -->
