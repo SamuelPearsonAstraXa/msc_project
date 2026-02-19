@@ -246,17 +246,41 @@ footer ul li a:hover{
     font-size: 1.6rem;
 }
 
+.auth-card {
+    background: var(--bg-main);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    width: 40rem;
+}
+
+.auth-container.contact {
+    height: auto;
+    background: var(--bg-soft);
+}
+
+.auth-container.contact .auth-card{
+    background: var(--bg-main);
+}
+
 .auth-card h2{
     margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.auth-card label {
+    color: var(--text-main);
 }
 
 .auth-card input {
     width: 100%;
     padding: 1.2rem;
     margin: 1rem 0;
-    background: #111;
-    border: 1px solid #333;
-    color: white;
+    background: var(--bg-card);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--text-main);
 }
 
 .auth-card button {
@@ -264,19 +288,9 @@ footer ul li a:hover{
     padding: 1.2rem;
     background: #ff3d00;
     border: none;
-    color: white;
+    color: var(--text-main);
     cursor: pointer;
     margin-top: 1rem;
-}
-
-.auth-card {
-    background: rgba(30,30,30,0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 5rem;
-    border-radius: var(--radius);
-    transition: var(--transition);
-    width: 40rem;
 }
 
 /* .auth-card label{
@@ -354,6 +368,14 @@ footer ul li a:hover{
     gap: 3rem;
 }
 
+#id_username, #id_password{
+    background-color: #0f0f0f;
+}
+
+#id_username:focus, #id_password:focus{
+    outline: 2px solid #ff3d00;
+}
+
 @media(max-width: 900px) {
     h1 {
         font-size: 2rem;
@@ -405,7 +427,7 @@ footer ul li a:hover{
     }
 
     .media-content{
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .cast-grid{
