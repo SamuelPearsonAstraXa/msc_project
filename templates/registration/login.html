@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Movies and Series Center</title>
+
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{% static 'styles/auth.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+
+    <script src="{% static 'accounts/scripts/login.js' %}" defer></script>
+</head>
+<body>
+    <div class="auth-container">
+
+        <div class="auth-card">
+            <h2>MSC Login</h2>
+            <form action="" method="post" id="user-login-form" novalidate>
+                {% csrf_token %}
+                {{ form.as_div }}
+                {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+                <button type="submit" title="Log in">Log in</button>
+            </form>
+            <fieldset>
+                <legend>Or</legend>
+                <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset</a></p>
+            </fieldset>
+        </div>
+
+    </div>
+</body>
+</html>

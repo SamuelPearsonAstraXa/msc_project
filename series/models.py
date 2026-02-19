@@ -23,16 +23,21 @@ class Series(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.title) + "-" + str(uuid4())[:8]
+        
+        super().save(*args, **kwargs)
+
         if self.poster:
             img = Image.open(self.poster)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
             img.thumbnail((500,500))
             buffer = BytesIO()
-            img.save(buffer, format='JPEG', quality=100)
+            img.save(buffer, format='JPEG', quality=85)
             buffer.seek(0)
-            self.thumbnail = ContentFile(buffer.read(), name=f'{str(self.poster.name)}-{str(self.id)}-thumbnail')
+            self.thumbnail.save(f"{self.slug}-thumbnail.jpg", ContentFile(buffer.read()), save=False)
 
-        super().save(*args, **kwargs)
+        super().save(update_fields=["thumbnail"])
 
 class Season(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True, editable=False)
@@ -45,7 +50,7 @@ class Season(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.series.title) + "-" + str(uuid4())[:8]
         super().save(*args, **kwargs)
 
 class Episode(models.Model):
@@ -61,5 +66,5 @@ class Episode(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.title) + "-" + str(uuid4())[:8]
         super().save(*args, **kwargs)

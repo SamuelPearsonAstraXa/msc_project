@@ -105,7 +105,7 @@ async function fetch_posts() {
                     <img src="${post.thumbnail}" alt="${post.title}">
                     <div class="content">
                         <h4>${post.title}</h4>
-                        <p>${post.content}</p>
+                        <p>${post.content.slice(0,30)}...</p>
                     </div>
                 </a>
             `;

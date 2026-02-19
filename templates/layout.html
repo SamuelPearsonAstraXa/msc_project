@@ -34,9 +34,13 @@
                 <li><a href="{% url 'movies:home' %}">Movies</a></li>
                 <li><a href="{% url 'series:home' %}">Series</a></li>
                 <li><a href="{% url 'core:contact' %}">Contact us</a></li>
-                <!-- <li><a href="#">Celebrities</a></li> -->
-                <!-- <li><a href="#">Log in</a></li> -->
                 <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'accounts:user-logout' %}">Log out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                {% endif %}
+                <!-- <li><a href="#">Log in</a></li> -->
             </ul>
         </nav>
         <form method="get" class="search-box">

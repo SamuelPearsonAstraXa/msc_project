@@ -43,6 +43,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ROOT_URLCONF = 'movies_and_series_updates.urls'
 
 TEMPLATES = [

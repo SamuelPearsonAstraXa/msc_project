@@ -15,7 +15,7 @@ class Genre(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
 class Actor(models.Model):
@@ -32,16 +32,21 @@ class Actor(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.name) + "-" + str(uuid4())[:8]
+        
+        super().save(*args, **kwargs)
+
         if self.photo:
             img = Image.open(self.photo)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
             img.thumbnail((500,500))
             buffer = BytesIO()
-            img.save(buffer, format='JPEG', quality=100)
+            img.save(buffer, format='JPEG', quality=85)
             buffer.seek(0)
-            self.thumbnail = ContentFile(buffer.read(), name=f'{str(self.photo.name)}-{str(self.id)}-thumbnail')
+            self.thumbnail.save(f"{self.slug}-thumbnail.jpg", ContentFile(buffer.read()), save=False)
 
-        super().save(*args, **kwargs)
+        super().save(update_fields=["thumbnail"])
 
 class Movie(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -65,13 +70,18 @@ class Movie(models.Model):
     
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.title) + "-" + str(uuid4())[:8]
+        
+        super().save(*args, **kwargs)
+
         if self.poster:
             img = Image.open(self.poster)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
             img.thumbnail((500,500))
             buffer = BytesIO()
-            img.save(buffer, format='JPEG', quality=100)
+            img.save(buffer, format='JPEG', quality=85)
             buffer.seek(0)
-            self.thumbnail = ContentFile(buffer.read(), name=f'{str(self.poster.name)}-{str(self.id)}-thumbnail')
-         
-        super().save(*args, **kwargs)
+            self.thumbnail.save(f"{self.slug}-thumbnail.jpg", ContentFile(buffer.read()), save=False)
+
+        super().save(update_fields=["thumbnail"])

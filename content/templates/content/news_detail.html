@@ -23,13 +23,13 @@
 
     <div class="meta">{{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
 
-    <img src="{{ post.featured_image.url }}" id="detailImage" class="detail-image">
+    <img src="{{ post.thmbnail.url }}" id="detailImage" class="detail-image">
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
-    <div id="detailText">{% lorem 5 p %}</div>
+    <div id="detailText">{{ post.content }}</div>
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>

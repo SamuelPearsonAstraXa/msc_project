@@ -42,13 +42,18 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.id)
+            self.slug = slugify(self.title) + "-" + str(uuid4())[:8]
+        
+        super().save(*args, **kwargs)
+
         if self.featured_image:
             img = Image.open(self.featured_image)
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
             img.thumbnail((500,500))
             buffer = BytesIO()
-            img.save(buffer, format='JPEG', quality=100)
+            img.save(buffer, format='JPEG', quality=85)
             buffer.seek(0)
-            self.thumbnail = ContentFile(buffer.read(), name=f'{str(self.featured_image.name)}-{str(self.id)}-thumbnail')
+            self.thumbnail.save(f"{self.slug}-thumbnail.jpg", ContentFile(buffer.read()), save=False)
 
-        super().save(*args, **kwargs)
+        super().save(update_fields=["thumbnail"])
