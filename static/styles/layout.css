@@ -322,3 +322,7 @@ footer ul li a:hover{
 .auth-card .helptext{
     display: none;
 }
+
+@media screen and (max-height:60rem) {
+    
+}

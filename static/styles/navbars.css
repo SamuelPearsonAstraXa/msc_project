@@ -13,6 +13,41 @@
     z-index: 5;
 }
 
+.popup-nav{
+    position: absolute;
+    top:5rem;
+    background: var(--bg-main);
+    box-shadow: 0 0 10px var(--text-main);
+    border-radius: 1rem;
+    transition: var(--transition);
+    font-size: 1.6rem;
+    display: none;
+}
+
+.popup-nav ul{
+    list-style: none;
+}
+
+.popup-nav ul li a{
+    padding: 1rem 2rem;
+    color: var(--text-main);
+    transition: 500ms ease-in-out;
+    display: block;
+}
+
+.popup-nav ul li:first-child a{
+    border-radius: 1rem 1rem 0 0;
+}
+
+.popup-nav ul li:last-child a{
+    border-radius: 0 0 1rem 1rem;
+}
+
+.popup-nav ul li a:hover{
+    color: var(--accent);
+    background-color: var(--bg-soft);
+}
+
 .nav ul, .left-links {
     display: flex;
     list-style: none;
@@ -60,7 +95,8 @@
     width: 100%;
 }
 
-.theme-toggle {
+.theme-toggle,
+.search-toggle {
     background: var(--bg-main);
     border: none;
     font-size: 1.6rem;
@@ -76,13 +112,50 @@
 }
 
 .search-box{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 5;
+    display: none;
+}
+
+.search-box .wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 2rem;
+}
+
+.search-box form{
     position: relative;
-    width: 30rem;
+    width: 50%;
+}
+
+.search-box .close-search{
+    background-color: var(--text-main);
+    color: var(--bg-main);
+    padding: 1rem;
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box .close-search:hover{
+    transform: scale(1.1);
 }
 
 .search-box input{
-    padding: 1rem;
-    padding-right: 4rem;
+    padding: 2rem;
+    padding-right: 6rem;
+    font-size: 1.6rem;
     border: 1px solid var(--text-main);
     /* border-radius: 1rem; */
     outline-color: var(--accent);
@@ -99,7 +172,30 @@
     background-color: transparent;
     border: none;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.6rem;
     color: var(--text-main);
+}
+
+@media screen and (max-width:60rem) {
+    .header{
+        padding: 1rem 2rem;
+    }
+
+    .nav{
+        display: none;
+    }
+
+    .left-links button{
+        display: inline-block;
+    }
+
+    .search-box{
+        height: 100dvh;
+    }
+
+    .search-box form{
+        width: 100%;
+    }
 }

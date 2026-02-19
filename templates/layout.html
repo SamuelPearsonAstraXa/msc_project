@@ -17,13 +17,15 @@
     {% block styles %}{% endblock styles %}
 
     <!-- <script src="{% static 'scripts/main.js' %}"></script> -->
-    <script src="{% static 'scripts/themes.js' %}"></script>
+    <script src="{% static 'scripts/themes.js' %}" defer></script>
+    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'scripts/navbars.js' %}"></script>
     {% block scripts %}{% endblock scripts %}
 </head>
 <body class="dark">
     <header class="header">
         <div class="left-links">
-            <button><i class="fas fa-bars"></i></button>
+            <button type="button" class="nav-toggle"><i class="fas fa-bars"></i></button>
             <a href="{% url 'core:home' %}">M S C</a>
         </div>
         <nav class="nav">
@@ -43,18 +45,49 @@
                 <!-- <li><a href="#">Log in</a></li> -->
             </ul>
         </nav>
-        <form method="get" class="search-box">
-            <input type="search" id="searchInput" name="search_query" placeholder="Search movies...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-        <button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+
+        <nav class="popup-nav">
+            <ul>
+                <!-- <li><a href="#">Home</a></li> -->
+                <li><a href="{% url 'content:news' %}"><span>News</span></a></li>
+                <li><a href="{% url 'content:leaks' %}">Leaks</a></li>
+                <li><a href="{% url 'movies:home' %}">Movies</a></li>
+                <li><a href="{% url 'series:home' %}">Series</a></li>
+                <li><a href="{% url 'core:contact' %}">Contact us</a></li>
+                <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'accounts:user-logout' %}">Log out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                {% endif %}
+                <!-- <li><a href="#">Log in</a></li> -->
+            </ul>
+        </nav>
+        <div>
+            <button id="searchToggle" class="search-toggle"><i class="fas fa-search"></i></button>
+            <button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button>
+        </div>
+
+        <div class="search-box">
+            <div class="wrapper">
+                <button class="close-search"><i class="fas fa-xmark"></i></button>
+                <form method="get">
+                    <input type="search" id="searchInput" name="search_query" placeholder="Search anything...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
 
     </header>
 
+    
+
     <!-- TOP AD BANNER -->
-    <div class="ad ad-top">
-        <p>Advertisement</p>
-        <!-- Google AdSense Code Here -->
+    <div class="ad-wrapper">
+        <div class="ad ad-top">
+            <p>Advertisement</p>
+            <!-- Google AdSense Code Here -->
+        </div>
     </div>
 
     {% block content%}

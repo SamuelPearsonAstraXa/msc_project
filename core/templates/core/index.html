@@ -37,7 +37,7 @@
             <div class="featured-info">
                 <span class="tag"><i class="fas fa-arrow-turn-up"></i> Trending now</span>
                 <h2>{{ featured_post.title }}</h2>
-                <p>{{ featured_post.title }}</p>
+                <p>{{ featured_post.content | truncatechars:30 }}</p>
                 <a href="{% url 'content:news_detail' featured_post.id %}">Read Full Story</a>
             </div>
         </section>
