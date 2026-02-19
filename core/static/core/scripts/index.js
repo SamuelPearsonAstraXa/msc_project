@@ -100,15 +100,42 @@ async function fetch_posts() {
                 `;
             }
 
-            posts_container.innerHTML += `
-                <a href='/content/${post.post_type}/${post.id}/' class="post-card">
-                    <img src="${post.thumbnail}" alt="${post.title}">
-                    <div class="content">
-                        <h4>${post.title}</h4>
-                        <p>${post.content.slice(0,30)}...</p>
-                    </div>
-                </a>
-            `;
+            if (post.post_type === 'leaks') {
+                posts_container.innerHTML += `
+                    <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                        <img src="${post.thumbnail}" alt="${post.title}">
+                        <div class="content">
+                            <h4>${post.title}</h4>
+                            <p>${post.content.slice(0,30)}...</p>
+                        </div>
+                        <p class='post-type'>Leak</p>
+                    </a>
+                `;
+            } else if (post.post_type === 'news') {
+                posts_container.innerHTML += `
+                    <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                        <img src="${post.thumbnail}" alt="${post.title}">
+                        <div class="content">
+                            <h4>${post.title}</h4>
+                            <p>${post.content.slice(0,30)}...</p>
+                        </div>
+                        <p class='post-type'>News</p>
+                    </a>
+                `;
+            } else {
+                posts_container.innerHTML += `
+                    <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                        <img src="${post.thumbnail}" alt="${post.title}">
+                        <div class="content">
+                            <h4>${post.title}</h4>
+                            <p>${post.content.slice(0,30)}...</p>
+                        </div>
+                        <p class='post-type'>Fact</p>
+                    </a>
+                `;
+            }
+
+            
         });
     } catch (error) {
         console.error(error.message)

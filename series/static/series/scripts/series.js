@@ -24,7 +24,7 @@ async function fetch_series() {
                     <img src="${series.thumbnail}">
                     <div class="content">
                         <h4>${series.title}</h4>
-                        <p>${series.description}</p>
+                        <p>${series.description.slice(0,45)}...</p>
                     </div>
                 </a>
             `;

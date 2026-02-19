@@ -1,25 +1,32 @@
 .main-layout {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    gap: 30px;
-    padding: 40px;
+    gap: 3rem;
+    padding: 4rem;
     align-items: start; /* prevents stretching */
 }
 
 /* PAGE HEADER */
 .page-header {
-    padding: 40px;
+    padding: 4rem;
     background: var(--bg-card);
     text-align: center;
 }
 
 .page-header h1 {
-    font-size: 36px;
+    font-size: 3.6rem;
 }
 
 /* CATEGORY PAGE */
 .category-content {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 3rem;
+}
+
+@media screen and (max-width:60rem) {
+    .main-layout{
+        padding: 2rem;
+        grid-template-columns: 1fr;
+    }
 }

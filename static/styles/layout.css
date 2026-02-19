@@ -158,6 +158,17 @@ footer ul li a:hover{
     padding: 2rem;
 }
 
+.post-card .post-type{
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    background: var(--accent-gradient);
+    color: white;
+    border-radius: 0 1rem 1rem 0;
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+
 .post-card h4 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
@@ -200,7 +211,8 @@ footer ul li a:hover{
 
 .create-container input,
 .create-container select,
-.create-container textarea {
+.create-container textarea,
+.auth-card textarea, .auth-card input {
     width: 100%;
     padding: 12px;
     margin: 10px 0 20px;
@@ -240,8 +252,8 @@ footer ul li a:hover{
 
 .auth-card input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 1.2rem;
+    margin: 1rem 0;
     background: #111;
     border: 1px solid #333;
     color: white;
@@ -249,19 +261,19 @@ footer ul li a:hover{
 
 .auth-card button {
     width: 100%;
-    padding: 12px;
+    padding: 1.2rem;
     background: #ff3d00;
     border: none;
     color: white;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .auth-card {
     background: rgba(30,30,30,0.8);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255,255,255,0.05);
-    padding: 50px;
+    padding: 5rem;
     border-radius: var(--radius);
     transition: var(--transition);
     width: 40rem;
@@ -272,7 +284,8 @@ footer ul li a:hover{
     text-align: start;
 } */
 
-.auth-card input:focus {
+.auth-card input:focus,
+.auth-card textarea:focus {
     outline: none;
     border: 1px solid var(--accent);
 }
@@ -323,6 +336,89 @@ footer ul li a:hover{
     display: none;
 }
 
-@media screen and (max-height:60rem) {
-    
+/* PAGE HEADER */
+.page-header {
+    padding: 4rem;
+    background: var(--bg-card);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 36px;
+}
+
+/* CATEGORY PAGE */
+.category-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media(max-width: 900px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .hero{
+        height: 20rem;
+    }
+
+    .hero p{
+        font-size: 1.6rem;
+    }
+
+    .featured{
+        height: auto;
+    }
+
+    .featured-info h2{
+        margin: 0;
+        font-size: 2.2rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .main-layout{
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .sidebar{
+        display: none;
+    }
+
+    .page-header{
+        padding: 2rem;
+    }
+
+    .media-hero{
+        margin: 1rem;
+        height: 30rem;
+    }
+
+    .media-overlay{
+        padding: 2rem;
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    .media-content{
+        padding: 2rem;
+    }
+
+    .cast-grid{
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .auth-container{
+        padding: 2rem;
+    }
+
+    .auth-card{
+        width: 100%;
+        padding: 2rem;
+    }
 }

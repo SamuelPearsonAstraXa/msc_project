@@ -24,7 +24,7 @@ async function fetch_movies() {
                     <img src="${movie.thumbnail}">
                     <div class="content">
                         <h4>${movie.title}</h4>
-                        <p>${movie.description}</p>
+                        <p>${movie.description.slice(0, 45)}...</p>
                     </div>
                 </a>
             `;

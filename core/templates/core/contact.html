@@ -15,7 +15,7 @@
 
 {% block content %}
 <main>
-
+        {% comment %}
         <main class="main-content">
             <form class="create-container" action="" method="post">
                 {% csrf_token %}
@@ -28,5 +28,18 @@
             </section>
 
         </main>
+        {% endcomment %}
+        <div class="auth-container">
+
+            <div class="auth-card">
+                <h2>Send a message to us.</h2>
+                <form action="" method="post" id="message-form" novalidate>
+                    {% csrf_token %}
+                    {{ form.as_div }}
+                    <button type="submit" title="Send message">Send message</button>
+                </form>
+            </div>
+
+        </div>
 </main>
 {% endblock content %}
