@@ -39,6 +39,9 @@
                 <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'accounts:user-logout' %}">Log out</a></li>
+                    {% if request.user.is_staff %}
+                        <li><a href="{% url 'accounts:admin-dashboard' %}">Dashboard</a></li>
+                    {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Log in</a></li>
                 {% endif %}
@@ -57,6 +60,9 @@
                 <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'accounts:user-logout' %}">Log out</a></li>
+                    {% if request.user.is_staff %}
+                        <li><a href="{% url 'accounts:admin-dashboard' %}">Dashboard</a></li>
+                    {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Log in</a></li>
                 {% endif %}

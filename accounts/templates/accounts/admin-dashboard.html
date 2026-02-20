@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/styles/admin-dashboard.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'accounts/scripts/admin-dashboard.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main class="admin-dashboard">
+    <!-- Stats Cards -->
+        <section class="stats-grid">
+
+            <a class="stat-card">
+                <h3>Total Movies</h3>
+                <p>{{ movies.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Actors</h3>
+                <p>{{ actors.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Series</h3>
+                <p>{{ series.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Seasons</h3>
+                <p>{{ seasons.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Episodes</h3>
+                <p>{{ episodes.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Posts</h3>
+                <p>{{ posts.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Genres</h3>
+                <p>{{ genres.count }}</p>
+            </a>
+
+            <a class="stat-card">
+                <h3>Total Tags</h3>
+                <p>{{ tags.count }}</p>
+            </a>
+
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <div class="actions-grid">
+                <a href="{% url 'movies:create-movie' %}">Create Movie</a>
+                <a href="{% url 'movies:create-actor' %}">Create Actor</a>
+                <a href="{% url 'series:create-series' %}">Create Series</a>
+                <a href="{% url 'series:create-season' %}">Create Season</a>
+                <a href="{% url 'series:create-episode' %}">Create Episode</a>
+                <a href="{% url 'content:create-post' %}">Create Post</a>
+                <a href="{% url 'content:create-tag' %}">Create Tag</a>
+                <a href="{% url 'movies:create-genre' %}">Create Genre</a>
+            </div>
+
+        </section>
+</main>
+{% endblock content %}

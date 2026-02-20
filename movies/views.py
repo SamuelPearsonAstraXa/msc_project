@@ -1,7 +1,38 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Movie
+from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm
+
+class CreateGenreView(CreateView):
+    form_class = CreateGenreForm
+    template_name = 'movies/create_genre.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create genre'
+        return context
+    
+class CreateActorView(CreateView):
+    form_class = CreateActorForm
+    template_name = 'movies/create_actor.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create actor'
+        return context
+
+class CreateMovieView(CreateView):
+    form_class = CreateMovieForm
+    template_name = 'movies/create_movie.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create movie'
+        return context
 
 class MovieDetailView(DetailView):
     template_name = 'movies/movie_detail.html'

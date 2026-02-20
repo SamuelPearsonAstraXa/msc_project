@@ -1,7 +1,28 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Post
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import CreatePostForm, CreateTagForm
+
+class CreateTagView(CreateView):
+    form_class = CreateTagForm
+    template_name = 'content/create_tag.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create tag'
+        return context
+
+class CreatePostView(CreateView):
+    form_class = CreatePostForm
+    template_name = 'content/create_post.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create post'
+        return context
 
 class DidYouKnowDetailView(DetailView):
     template_name = 'content/did_you_know_detail.html'

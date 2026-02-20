@@ -1,7 +1,38 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Series, Season, Episode
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import CreateSeriesForm, CreateSeasonForm, CreateEpisodeForm
+
+class CreateEpisodeView(CreateView):
+    form_class = CreateEpisodeForm
+    template_name = 'series/create_episode.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create an episode'
+        return context
+
+class CreateSeasonView(CreateView):
+    form_class = CreateSeasonForm
+    template_name = 'series/create_season.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create a season'
+        return context
+
+class CreateSeriesView(CreateView):
+    form_class = CreateSeriesForm
+    template_name = 'series/create_series.html'
+    success_url = '/accounts/admin-dashboard/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Create a series'
+        return context
 
 class SeriesDetailView(DetailView):
     template_name = 'series/series_detail.html'

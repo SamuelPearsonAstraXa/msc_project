@@ -3,8 +3,30 @@ from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView, DetailView, UpdateView, View
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic import CreateView, DetailView, UpdateView, View, TemplateView
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from content.models import Post, Tag
+from series.models import Series, Season, Episode
+from movies.models import Movie, Actor, Genre
+
+class AdminDashboardView(PermissionRequiredMixin, TemplateView):
+    template_name = 'accounts/admin-dashboard.html'
+    permission_required = 'request.user.is_staff'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Dashboard'
+        context['posts'] = Post.objects.all().order_by('-created_at')
+        context['movies'] = Movie.objects.all().order_by('-create_date')
+        context['series'] = Series.objects.all().order_by('-release_date')
+        context['seasons'] = Season.objects.all()
+        context['episodes'] = Episode.objects.all()
+        context['actors'] = Actor.objects.all().order_by('name')
+        context['genres'] = Genre.objects.all().order_by('name')
+        context['tags'] = Tag.objects.all().order_by('name')
+        
+        return context
 
 
 def logout_view(request):
