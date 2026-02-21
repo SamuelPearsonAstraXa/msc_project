@@ -77,7 +77,7 @@
         <div class="search-box">
             <div class="wrapper">
                 <button class="close-search"><i class="fas fa-xmark"></i></button>
-                <form method="get">
+                <form method="get" action="{% url 'core:search' %}">
                     <input type="search" id="searchInput" name="search_query" placeholder="Search anything...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>

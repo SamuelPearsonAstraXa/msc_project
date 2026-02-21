@@ -58,6 +58,7 @@ class Movie(models.Model):
     duration = models.PositiveIntegerField(help_text='Duration in minutes')
     rating = models.FloatField(default=0)
     genres = models.ManyToManyField(Genre)
+    post_type = models.CharField(default='movie', blank=True)
     cast = models.ManyToManyField(Actor, related_name='movie_casts')
     create_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(default='', blank=True, unique=True)

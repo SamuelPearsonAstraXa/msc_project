@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/search.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'core/scripts/search.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <header class="search-header">
+        <div class="search-bar">
+            <form action="" method="get">
+                <input type="text" name="search_query" id="searchInput" placeholder="Search movies, series, actors...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </header>
+
+    <section class="search-hero">
+        {% if search_query != 'None' %}
+        <h1>Search Results</h1>
+            <p id="searchQueryText">Showing results for: <strong>{{ search_query }}</strong></p>
+        {% endif %}
+    </section>
+
+    <section class="filters" style="display: none;">
+        <button class="filter active" data-type="all">All</button>
+        <button class="filter" data-type="movie">Movies</button>
+        <button class="filter" data-type="series">Series</button>
+        <button class="filter" data-type="news">News</button>
+        <button class="filter" data-type="actor">Actors</button>
+    </section>
+
+    <section class="results-grid" id="resultsContainer">
+        <!-- Dynamic Results -->
+        {% if search_results.count != 0 %}
+            {% for obj in search_results %}
+                {% if obj.post_type == 'did_you_know' %}
+                    <div class="result-card">
+                        <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                        <div class="result-content">
+                            <h3>{{ obj.title | truncatechars:20 }}</h3>
+                            <span>Fact</span>
+                        </div>
+                    </div>
+                {% else %}
+                    {% if obj.post_type == 'leaks' %}
+                        <div class="result-card">
+                            <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                            <div class="result-content">
+                                <h3>{{ obj.title | truncatechars:20 }}</h3>
+                                <span>Leak</span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="result-card">
+                            <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                            <div class="result-content">
+                                <h3>{{ obj.title | truncatechars:20 }}</h3>
+                                <span>{{ obj.post_type | title }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No match found</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock content %}

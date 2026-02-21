@@ -14,6 +14,7 @@ class Series(models.Model):
     poster = models.ImageField(upload_to='series/poster',)
     thumbnail = models.ImageField(upload_to='series/thumbnails', blank=True, null=True)
     release_date = models.DateField()
+    post_type = models.CharField(default='series', blank=True)
     season_count = models.PositiveIntegerField(default=1)
     cast = models.ManyToManyField(CustomUser, blank=True)
     slug = models.SlugField(default='', unique=True, editable=False, blank=True)
