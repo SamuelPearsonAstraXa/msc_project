@@ -4,6 +4,8 @@ from . import views
 app_name = 'content'
 
 urlpatterns = [
+    path('', views.PostsView.as_view(), name='home'),
+    path('fetch_posts/', views.fetch_posts, name='fetch_posts'),
     path('create/', views.CreatePostView.as_view(), name='create-post'),
     path('create/tag/', views.CreateTagView.as_view(), name='create-tag'),
     path('did_you_know/', views.DidYouKnowsView.as_view(), name='did_you_know'),

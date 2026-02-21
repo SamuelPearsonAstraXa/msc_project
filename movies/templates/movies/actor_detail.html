@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+<link rel="stylesheet" href="{% static 'movies/styles/movie_detail.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'movies/scripts/movie_detail.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <!-- HERO SECTION -->
+<section class="media-hero" id="mediaHero">
+    <div class="media-overlay">
+        <h1 id="mediaTitle">{{ actor.name }}</h1>
+        <p id="mediaTagline"></p>
+
+        <div class="media-meta">
+            <span id="mediaYear">{{ actor.birth_date }}</span>
+            <span id="mediaGenre">{{ actor.gender }}</span>
+            <span class="rating">{{ actor.likes }}</span>
+        </div>
+    </div>
+</section>
+
+<div class="main-layout">
+
+<main class="media-content">
+    <input type="hidden" name="bg-img" id="bg-img" value="{{ actor.photo.url }}">
+
+    <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2>Biography</h2>
+        <p id="mediaDescription">{{ actor.bio }}</p>
+
+        <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2>Featured Movies</h2>
+        <div class="related-grid" id="relatedMedia">
+            {% for movie in featured_movies %}
+                {% if actor in movie.cast.all %}
+                    <a href="{% url 'movies:detail' movie.id %}" class="post-card">
+                        <img src="{{ movie.thumbnail.url }}">
+                        <div class="content">
+                            <h4>{{ movie.title }}</h4>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="ad ad-sidebar"><p>Advertisement</p></div>
+    </aside>
+
+    </div>
+</main>
+{% endblock content %}

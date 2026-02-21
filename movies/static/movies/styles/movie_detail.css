@@ -14,10 +14,11 @@
     position: absolute;
     bottom: 4rem;
     left: 4rem;
-    background: rgba(0,0,0,0.6);
+    background: var(--bg-transparent);
     padding: 3rem;
     border-radius: var(--radius);
     max-width: 60rem;
+    color: var(--text-main);
 }
 
 .media-meta {

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Movie
+from .models import Movie, Actor, Genre
 from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm
 
 class CreateGenreView(CreateView):
@@ -34,6 +34,28 @@ class CreateMovieView(CreateView):
         context['title'] = 'Create movie'
         return context
 
+class ActorDetailView(DetailView):
+    template_name = 'movies/actor_detail.html'
+    model = Actor
+    pk_url_kwarg = 'id'
+    context_object_name = 'actor'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.object.name
+        context['featured_movies'] = Movie.objects.all().order_by('-create_date')
+        return context
+
+class ActorsListView(ListView):
+    template_name = 'movies/actors_list.html'
+    model = Movie
+    context_object_name = 'actors'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Actors'
+        return context
+
 class MovieDetailView(DetailView):
     template_name = 'movies/movie_detail.html'
     model = Movie
@@ -55,6 +77,21 @@ class MoviesListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Movies'
         return context
+    
+def fetch_actors(request):
+    actors = []
+    a_results = Actor.objects.all()
+    for a_result in a_results:
+        result = {
+            'id': a_result.id,
+            'name': a_result.name,
+            'bio': a_result.bio,
+            'photo': a_result.photo.url,
+            'thumbnail': a_result.thumbnail.url,
+            'slug': a_result.slug,
+        }
+        actors.append(result)
+    return JsonResponse({'my_response':'This is the response.','actors':actors})
     
 def fetch_data(request):
     movies = []

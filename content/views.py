@@ -84,6 +84,15 @@ class NewsView(ListView):
         context['title'] = 'News'
         return context
     
+class PostsView(ListView):
+    template_name = 'content/posts_list.html'
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'News'
+        return context
+    
 def fetch_leaks(request):
     posts = []
     p_results = Post.objects.filter(post_type='leaks')
@@ -117,6 +126,21 @@ def fetch_news(request):
 def fetch_did_you_know(request):
     posts = []
     p_results = Post.objects.filter(post_type='did_you_know')
+    for p_result in p_results:
+        result = {
+            'id': p_result.id,
+            'title': p_result.title,
+            'thumbnail': p_result.thumbnail.url,
+            'content': p_result.content,
+            'post_type': p_result.post_type,
+            'slug': p_result.slug,
+        }
+        posts.append(result)
+    return JsonResponse({'my_response':'This is the response.','posts':posts})
+
+def fetch_posts(request):
+    posts = []
+    p_results = Post.objects.all().order_by('-created_at')
     for p_result in p_results:
         result = {
             'id': p_result.id,

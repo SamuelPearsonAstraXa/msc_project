@@ -23,5 +23,6 @@ class CreateMovieForm(forms.ModelForm):
         exclude = ['slug', 'thumbnail',]
 
         widgets = {
-            'birth_date': forms.DateInput(attrs={'type':'date'})
+            'birth_date': forms.DateInput(attrs={'type':'date'}),
+            'release_date': forms.DateInput(attrs={'type':'date'}),
         }

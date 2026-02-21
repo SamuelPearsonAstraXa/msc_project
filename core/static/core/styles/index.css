@@ -28,6 +28,7 @@ main{
     border-radius: 1.4rem;
     overflow: hidden;
     height: 40rem;
+    background-color: var(--bg-card);
 }
 
 .featured-image img {

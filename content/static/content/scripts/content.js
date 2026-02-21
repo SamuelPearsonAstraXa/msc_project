@@ -46,6 +46,42 @@ async function fetch_posts(post_type) {
     }
 }
 
+async function fetch_all_posts() {
+    try {
+        const response = await fetch(`/content/fetch_posts/`);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const results = await response.json();
+        const posts = results.posts
+        // const container = document.getElementById("categoryPosts");
+        posts_container.innerHTML = "";
+
+        posts.forEach((post, index) => {
+            // Insert ad after 3rd post
+            if (index === 3) {
+                posts_container.innerHTML += `
+                    <div class="ad ad-infeed">
+                        <p>Advertisement</p>
+                    </div>
+                `;
+            }
+
+            posts_container.innerHTML += `
+                <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                    <img src="${post.thumbnail}" alt="${post.title}">
+                    <div class="content">
+                        <h4>${post.title}</h4>
+                        <p>${post.content.slice(0,45)}...</p>
+                    </div>
+                </a>
+            `;
+        });
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
 switch (location.href) {
     case  'http://127.0.0.1:8000/content/did_you_know/':
         fetch_posts('did_you_know')
@@ -53,12 +89,13 @@ switch (location.href) {
     case 'http://127.0.0.1:8000/content/leaks/':
         fetch_posts('leaks')
         break;
-    default:
+    case 'http://127.0.0.1:8000/content/news/':
         fetch_posts('news')
         break;
+    default:
+        fetch_all_posts()
+        break;
 }
-
-console.log(location)
 
 // setInterval(() => {
 //     fetch_posts()

@@ -20,17 +20,17 @@
     <!-- Stats Cards -->
         <section class="stats-grid">
 
-            <a class="stat-card">
+            <a href="{% url 'movies:home' %}" class="stat-card">
                 <h3>Total Movies</h3>
                 <p>{{ movies.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a href="{% url 'movies:actors' %}" class="stat-card">
                 <h3>Total Actors</h3>
                 <p>{{ actors.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a href="{% url 'series:home' %}" class="stat-card">
                 <h3>Total Series</h3>
                 <p>{{ series.count }}</p>
             </a>
@@ -45,7 +45,7 @@
                 <p>{{ episodes.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a href="{% url 'content:home' %}" class="stat-card">
                 <h3>Total Posts</h3>
                 <p>{{ posts.count }}</p>
             </a>

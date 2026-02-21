@@ -17,6 +17,7 @@ body.dark {
     --bg-soft: #151515;
     --bg-ad: rgba(255,255,255,0.1);
     --bg-ad-soft: rgba(255,255,255,0.05);
+    --bg-transparent: rgba(0, 0, 0, 0.6);
     --text-main: #ffffff;
     --text-muted: #aaaaaa;
     --accent: #ff3d00;
@@ -30,6 +31,7 @@ body.light {
     --bg-soft: #eaeaea;
     --bg-ad: rgba(0,0,0,0.1);
     --bg-ad-soft: rgba(0,0,0,0.05);
+    --bg-transparent: rgba(255, 255, 255, 0.6);
     --text-main: #111111;
     --text-muted: #555555;
     --accent: #ff3d00;
@@ -509,5 +511,11 @@ main.admin-dashboard{
     .auth-card{
         width: 100%;
         padding: 2rem;
+    }
+
+    .footer ul{
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 4rem;
     }
 }
