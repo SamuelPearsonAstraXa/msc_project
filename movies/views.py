@@ -1,8 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .models import Movie, Actor, Genre
 from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm
+
+class DeleteMovieView(DeleteView):
+    template_name = 'movies/delete_movie.html'
+    model = Movie
+    context_object_name = 'movie'
+    pk_url_kwarg = 'id'
+    success_url = '/movies/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
 
 class CreateGenreView(CreateView):
     form_class = CreateGenreForm

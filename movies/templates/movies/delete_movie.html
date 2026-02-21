@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'movies/styles/movie_detail.css' %}">
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'movies/scripts/movie_detail.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <!-- HERO SECTION -->
+<section class="media-hero" id="mediaHero">
+    
+    <div class="media-overlay">
+        <h1 id="mediaTitle">{{ movie.title }}</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Are you sure about deleting the movie?</p>
+            <a href="{% url 'movies:detail' movie.id %}" style="color: var(--text-main); border-bottom: 1px solid;">Cancel</a>
+            <button type="submit" class="delete-btn">Yes</button>
+        </form>
+    </div>
+</section>
+
+<div class="main-layout">
+
+<main class="media-content">
+    <input type="hidden" name="bg-img" id="bg-img" value="{{ movie.thumbnail.url }}">
+
+    <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2>Synopsis</h2>
+        <p id="mediaDescription">{{ movie.description }}</p>
+
+        <h2>Cast</h2>
+        <div class="cast-grid" id="castGrid">
+            {% for actor in movie.cast.all %}
+                <div class="cast-card">
+                    <img src="{{ actor.thumbnail.url }}">
+                    <p>{{actor.name}}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="ad ad-horizontal"><p>Advertisement</p></div>
+
+        <h2 style="display: none;">Trailer</h2>
+        <div class="trailer-container" style="display: none;">
+            <iframe id="mediaTrailer" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <h2>Related Movies</h2>
+        <div class="related-grid" id="relatedMedia">
+            {% for r_movie in related_movies %}
+                {% if r_movie.id != movie.id %}
+                    <a href="{% url 'movies:detail' r_movie.id %}" class="post-card">
+                        <img src="{{ r_movie.thumbnail.url }}">
+                        <div class="content">
+                            <h4>{{ r_movie.title }}</h4>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </main>
+
+    <aside class="sidebar">
+        <div class="ad ad-sidebar"><p>Advertisement</p></div>
+    </aside>
+
+    </div>
+</main>
+{% endblock content %}

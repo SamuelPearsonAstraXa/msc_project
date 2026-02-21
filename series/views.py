@@ -1,8 +1,20 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Series, Season, Episode
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from .forms import CreateSeriesForm, CreateSeasonForm, CreateEpisodeForm
+
+class DeleteSeriesView(DeleteView):
+    template_name = 'series/delete_series.html'
+    model = Series
+    context_object_name = 'series'
+    pk_url_kwarg = 'id'
+    success_url = '/series/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
 
 class CreateEpisodeView(CreateView):
     form_class = CreateEpisodeForm

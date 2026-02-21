@@ -79,6 +79,7 @@
     transition: var(--transition);
     cursor: pointer;
     position: relative;
+    color: var(--text-main);
 }
 
 .result-card:hover {

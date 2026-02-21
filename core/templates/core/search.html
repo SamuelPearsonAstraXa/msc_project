@@ -45,30 +45,50 @@
         {% if search_results.count != 0 %}
             {% for obj in search_results %}
                 {% if obj.post_type == 'did_you_know' %}
-                    <div class="result-card">
+                    <a href="{% url 'content:did_you_know_detail' obj.id %}" class="result-card">
                         <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                         <div class="result-content">
                             <h3>{{ obj.title | truncatechars:20 }}</h3>
                             <span>Fact</span>
                         </div>
-                    </div>
+                    </a>
                 {% else %}
                     {% if obj.post_type == 'leaks' %}
-                        <div class="result-card">
+                        <a href="{% url 'content:leak_detail' obj.id %}" class="result-card">
                             <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                             <div class="result-content">
                                 <h3>{{ obj.title | truncatechars:20 }}</h3>
                                 <span>Leak</span>
                             </div>
-                        </div>
+                        </a>
                     {% else %}
-                        <div class="result-card">
-                            <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
-                            <div class="result-content">
-                                <h3>{{ obj.title | truncatechars:20 }}</h3>
-                                <span>{{ obj.post_type | title }}</span>
-                            </div>
-                        </div>
+                        {% if obj.post_type == 'news' %}
+                            <a href="{% url 'content:news_detail' obj.id %}" class="result-card">
+                                <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                                <div class="result-content">
+                                    <h3>{{ obj.title | truncatechars:20 }}</h3>
+                                    <span>{{ obj.post_type | title }}</span>
+                                </div>
+                            </a>
+                        {% else %}
+                            {% if obj.post_type == 'movie' %}
+                                <a href="{% url 'movies:detail' obj.id %}" class="result-card">
+                                    <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                                    <div class="result-content">
+                                        <h3>{{ obj.title | truncatechars:20 }}</h3>
+                                        <span>{{ obj.post_type | title }}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'series:detail' obj.id %}" class="result-card">
+                                    <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
+                                    <div class="result-content">
+                                        <h3>{{ obj.title | truncatechars:20 }}</h3>
+                                        <span>{{ obj.post_type | title }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             {% endfor %}

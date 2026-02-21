@@ -19,6 +19,9 @@
 <main>
     <!-- HERO SECTION -->
 <section class="media-hero" id="mediaHero">
+    {% if request.user.is_staff %}
+        <a class="delete-link" href="{% url 'series:delete-series' series.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
+    {% endif %}
     <div class="media-overlay">
         <h1 id="mediaTitle">{{ series.title }}</h1>
         <p id="mediaTagline"></p>
