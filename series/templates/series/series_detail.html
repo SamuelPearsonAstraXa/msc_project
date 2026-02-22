@@ -22,6 +22,9 @@
     {% if request.user.is_staff %}
         <a class="delete-link" href="{% url 'series:delete-series' series.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
     {% endif %}
+    {% if request.user.is_staff %}
+        <a class="update-link" href="{% url 'series:update-series' series.id %}"><i class="fas fa-trash"></i> &nbsp; Update</a>
+    {% endif %}
     <div class="media-overlay">
         <h1 id="mediaTitle">{{ series.title }}</h1>
         <p id="mediaTagline"></p>
@@ -29,7 +32,6 @@
         <div class="media-meta">
             <span id="mediaYear">{{ series.release_date }}</span>
             <span id="mediaGenre">{{ series.genre }}</span>
-            <span class="rating">⭐ <span id="mediaRating">{{ series.rating }}</span>/10</span>
         </div>
     </div>
 </section>

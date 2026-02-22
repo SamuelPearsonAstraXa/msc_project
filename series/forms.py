@@ -13,6 +13,16 @@ class CreateSeasonForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['slug', 'thumbnail',]
 
+class UpdateSeriesForm(forms.ModelForm):
+    class Meta:
+        model = Series
+        fields = '__all__'
+        exclude = ['slug', 'thumbnail', 'post_type',]
+
+        widgets = {
+            'release_date': forms.DateInput(attrs={'type':'date'})
+        }
+
 class CreateSeriesForm(forms.ModelForm):
     class Meta:
         model = Series

@@ -11,4 +11,5 @@ urlpatterns = [
     path('fetch-data/', views.fetch_data, name='fetch-data'),
     path('<str:id>/', views.SeriesDetailView.as_view(), name='detail'),
     path('<str:id>/delete/', views.DeleteSeriesView.as_view(), name='delete-series'),
+    path('<str:id>/update/', views.UpdateSeriesView.as_view(), name='update-series'),
 ]
