@@ -22,6 +22,9 @@
     {% if request.user.is_staff %}
         <a class="delete-link" href="{% url 'movies:delete-movie' movie.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
     {% endif %}
+    {% if request.user.is_staff %}
+        <a class="update-link" href="{% url 'movies:update-movie' movie.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
+    {% endif %}
 
     <div class="media-overlay">
         <h1 id="mediaTitle">{{ movie.title }}</h1>

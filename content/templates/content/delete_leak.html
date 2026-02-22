@@ -18,15 +18,18 @@
 <div class="main-layout">
 
 <main class="detail-content">
-    {% if request.user.is_staff %}
-        <a class="delete-link" href="{% url 'content:delete-leak' post.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
-    {% endif %}
-    {% if request.user.is_staff %}
-        <a class="update-link" href="{% url 'content:update-leak' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
-    {% endif %}
 
     <h1 id="detailTitle">{{ post.title }}</h1>
+    <br><br>
 
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure about deleting the leak?</p>
+        <a href="{% url 'content:leak_detail' post.id %}" style="color: var(--text-main); border-bottom: 1px solid;">Cancel</a>
+        <button type="submit" class="delete-btn">Yes</button>
+    </form>
+
+    <br><br>
     <div class="meta">By {{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
 
     <img src="{{ post.featured_image.url }}" id="detailImage" class="detail-image">

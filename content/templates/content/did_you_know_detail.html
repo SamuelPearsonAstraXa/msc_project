@@ -18,6 +18,12 @@
 <div class="main-layout">
 
 <main class="detail-content">
+    {% if request.user.is_staff %}
+        <a class="delete-link" href="{% url 'content:delete-fact' post.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
+    {% endif %}
+    {% if request.user.is_staff %}
+        <a class="update-link" href="{% url 'content:update-fact' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
+    {% endif %}
 
     <h1 id="detailTitle">{{ post.title }}</h1>
 

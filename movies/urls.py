@@ -13,5 +13,6 @@ urlpatterns = [
     path('actors/<str:id>/', views.ActorDetailView.as_view(), name='actor-detail'),
     path('fetch-actors/', views.fetch_actors, name='fetch-actors'),
     path('<str:id>/', views.MovieDetailView.as_view(), name='detail'),
+    path('<str:id>/update/', views.UpdateMovieView.as_view(), name='update-movie'),
     path('<str:id>/delete/', views.DeleteMovieView.as_view(), name='delete-movie'),
 ]

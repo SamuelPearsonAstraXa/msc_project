@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView
-from .forms import CreatePostForm, CreateTagForm
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from .forms import CreatePostForm, CreateTagForm, UpdatePostForm
 
 class CreateTagView(CreateView):
     form_class = CreateTagForm
@@ -12,6 +12,62 @@ class CreateTagView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Create tag'
+        return context
+    
+class DeleteDidYouKnowView(DeleteView):
+    template_name = 'content/delete_did_you_know.html'
+    model = Post
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+    success_url = '/content/did_you_know/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
+    
+class DeleteLeakView(DeleteView):
+    template_name = 'content/delete_leak.html'
+    model = Post
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+    success_url = '/content/leaks/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
+    
+class DeleteNewsView(DeleteView):
+    template_name = 'content/delete_news.html'
+    model = Post
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+    success_url = '/content/news/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
+
+class UpdatePostView(UpdateView):
+    form_class = CreatePostForm
+    model = Post
+    form_class = UpdatePostForm
+    pk_url_kwarg = 'id'
+    template_name = 'content/create_post.html'
+
+    def get_success_url(self):
+        if self.object.post_type == 'leaks':
+           return f'/content/leaks/{self.object.id}/'
+        elif self.object.post_type == 'news':
+           return f'/content/news/{self.object.id}/'
+        else:
+           return f'/content/did_you_know/{self.object.id}'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Update {self.object.title}'
         return context
 
 class CreatePostView(CreateView):

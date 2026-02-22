@@ -1,8 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from .models import Movie, Actor, Genre
-from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm
+from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm, UpdateMovieForm
+
+class UpdateMovieView(UpdateView):
+    template_name = 'movies/update_movie.html'
+    model = Movie
+    form_class = UpdateMovieForm
+    context_object_name = 'movie'
+    pk_url_kwarg = 'id'
+    success_url = '/movies/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Update {self.object.title}'
+        return context
 
 class DeleteMovieView(DeleteView):
     template_name = 'movies/delete_movie.html'

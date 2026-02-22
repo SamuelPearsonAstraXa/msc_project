@@ -16,11 +16,22 @@ class CreateActorForm(forms.ModelForm):
             'birth_date': forms.DateInput(attrs={'type':'date'})
         }
 
+class UpdateMovieForm(forms.ModelForm):
+    class Meta:
+        model = Movie
+        fields = '__all__'
+        exclude = ['slug', 'thumbnail', 'post_type',]
+
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type':'date'}),
+            'release_date': forms.DateInput(attrs={'type':'date'}),
+        }
+
 class CreateMovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = '__all__'
-        exclude = ['slug', 'thumbnail',]
+        exclude = ['slug', 'thumbnail', 'post_type',]
 
         widgets = {
             'birth_date': forms.DateInput(attrs={'type':'date'}),

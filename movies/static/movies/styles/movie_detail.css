@@ -21,6 +21,17 @@
     letter-spacing: 2px;
 }
 
+.update-link{
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: var(--text-main);
+    padding: 1rem;
+    background-color: var(--bg-transparent);
+    border-radius: 1rem;
+    letter-spacing: 2px;
+}
+
 .delete-btn{
     background-color: red;
     color: white;
