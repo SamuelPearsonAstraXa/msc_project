@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main class="message-wrapper">
+
+    <div class="confirm-msg-delete-div">
+        Are you sure you want to delete message from <a href="mailto:{{ msg.sender_email }}">{{ msg.sender_email }}</a>?
+        <form action="" method="post">
+            {% csrf_token %}
+            <a href="{% url 'core:message' msg.id %}">Cancel</a>
+            <button type="submit">Yes</button>
+        </form>
+    </div>
+
+    <p class="heading">Message from <a href="mailto:{{ msg.sender_email }}">{{ msg.sender_email }}</a></p>
+    <section class="message-container">
+        <h2>Sub: {{ msg.title | title }}</h2>
+        <p class="recieve-time"><i class="fa-regular fa-clock"></i> &middot; <span>{{ msg.recieved_at | timesince }} <small>ago</small></span></p>
+        <p class="msg-content">{{ msg.content }}</p>
+    </section>
+</main>
+{% endblock content %}

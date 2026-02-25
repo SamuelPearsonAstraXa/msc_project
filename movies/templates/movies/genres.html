@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main class="genres-wrapper">
+    <h1>Movie genres</h1>
+    <section>
+        {% for genre in genres %}
+            <div class="genre-card">
+                <p>{{ genre.name }}</p>
+                <a href="{% url 'movies:delete-genre' genre.id %}"><i class="fas fa-trash"></i> Delete</a>
+            </div>
+        {% endfor %}
+    </section>
+</main>
+{% endblock content %}

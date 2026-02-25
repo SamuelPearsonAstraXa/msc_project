@@ -4,7 +4,11 @@ const search_box = document.querySelector('.search-box');
 
 $(document).ready(e=>{
     $('.nav-toggle').click(e=>{
-        $('.popup-nav').slideToggle(1000)
+        $('.popup-nav').slideToggle(2000)
+    })
+
+    $(document).scroll(e=>{
+        $('.popup-nav').slideUp(2000)
     })
 
     $('.close-search').click(e=>{

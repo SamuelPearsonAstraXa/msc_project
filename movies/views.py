@@ -1,10 +1,37 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from .models import Movie, Actor, Genre
 from .forms import CreateMovieForm, CreateActorForm, CreateGenreForm, UpdateMovieForm
 
-class UpdateMovieView(UpdateView):
+class DeleteGenreView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    template_name = 'movies/delete_genre.html'
+    model = Genre
+    context_object_name = 'genre'
+    pk_url_kwarg = 'id'
+    success_url = '/movies/genres/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.name}'
+        return context
+
+class GenresView(ListView):
+    template_name = 'movies/genres.html'
+    model = Genre
+    paginate_by = 50
+    context_object_name = 'genres'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Genres'
+        return context
+
+class UpdateMovieView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'request.user.is_staff'
     template_name = 'movies/update_movie.html'
     model = Movie
     form_class = UpdateMovieForm
@@ -17,7 +44,8 @@ class UpdateMovieView(UpdateView):
         context['title'] = f'Update {self.object.title}'
         return context
 
-class DeleteMovieView(DeleteView):
+class DeleteMovieView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
     template_name = 'movies/delete_movie.html'
     model = Movie
     context_object_name = 'movie'
@@ -29,7 +57,8 @@ class DeleteMovieView(DeleteView):
         context['title'] = f'Delete {self.object.title}'
         return context
 
-class CreateGenreView(CreateView):
+class CreateGenreView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateGenreForm
     template_name = 'movies/create_genre.html'
     success_url = '/accounts/admin-dashboard/'
@@ -39,7 +68,8 @@ class CreateGenreView(CreateView):
         context['title'] = 'Create genre'
         return context
     
-class CreateActorView(CreateView):
+class CreateActorView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateActorForm
     template_name = 'movies/create_actor.html'
     success_url = '/accounts/admin-dashboard/'
@@ -49,7 +79,8 @@ class CreateActorView(CreateView):
         context['title'] = 'Create actor'
         return context
 
-class CreateMovieView(CreateView):
+class CreateMovieView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateMovieForm
     template_name = 'movies/create_movie.html'
     success_url = '/accounts/admin-dashboard/'

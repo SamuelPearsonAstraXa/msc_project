@@ -1,11 +1,14 @@
+import random
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from content.models import Post
 from movies.models import Movie
 from series.models import Series
 from .forms import ContactForm
-import random
+from .models import Message
 
 class SearchView(ListView):
     template_name = 'core/search.html'
@@ -65,9 +68,54 @@ class SearchView(ListView):
 
         return context
 
+class DeleteMessageView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    template_name = 'core/delete_message.html'
+    model = Message
+    context_object_name = 'msg'
+    success_url = '/messages/'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete message from {self.object.sender_email}'
+        return context
+        
+class MessageDetailView(DetailView):
+    template_name = 'core/message.html'
+    model = Message
+    context_object_name = 'msg'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Message from {self.object.sender_email}'
+        return context
+
+class MessagesView(PermissionRequiredMixin, ListView):
+    permission_required = 'request.user.is_staff'
+    template_name = 'core/messages.html'
+    model = Message
+    paginate_by = 50
+    context_object_name = 'messages'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Messages'
+        return context
+
+class MessageSentView(TemplateView):
+    template_name = 'core/msg_sent.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Message Sent'
+        return context
+
 class ContactUsView(CreateView):
     form_class = ContactForm
     template_name = 'core/contact.html'
+    success_url = '/message-sent/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -445,6 +445,177 @@ main.admin-dashboard{
     opacity: 0.5;
 }
 
+.messages-wrapper{
+    padding: 2rem;
+}
+
+.messages-wrapper h1{
+    text-align: center;
+    padding: 2rem;
+}
+
+.messages-wrapper .message-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr));
+    gap: 5rem;
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.messages-wrapper .message-list .msg-card{
+    background-color: var(--bg-main);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: var(--text-main);
+    transition: 500ms ease-in-out;
+}
+
+.messages-wrapper .message-list .msg-card:hover{
+    transform: scale(1.05);
+}
+
+.messages-wrapper .message-list .msg-card h6{
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.messages-wrapper .message-list .msg-card p.content{
+    background-color: var(--bg-card);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.messages-wrapper .message-list .msg-card span{
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.messages-wrapper .message-list .msg-card i{
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.message-wrapper{
+    padding: 1rem;
+    position: relative;
+    min-height: 50dvh;
+}
+
+.message-wrapper .delete-msg{
+    color: var(--text-main);
+    background: var(--accent-gradient);
+    border-radius: 1rem;
+    padding: 1rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    transition: 500ms ease-in-out;
+}
+
+.message-wrapper .delete-msg:hover{
+    transform: scale(1.05);
+}
+
+.message-wrapper .heading{
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.message-wrapper .heading a{
+    color: var(--accent);
+}
+
+.message-wrapper .message-container{
+    background-color: var(--bg-main);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 80rem;
+    margin: auto;
+}
+
+.message-wrapper .message-container .recieve-time{
+    font-style: italic;
+}
+
+.message-wrapper .message-container .recieve-time span{
+    vertical-align: middle;
+}
+
+.message-wrapper .message-container .recieve-time i{
+    vertical-align: middle;
+    font-size: 1.4rem;
+}
+
+.message-wrapper .message-container .msg-content {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 3rem;
+}
+
+.confirm-msg-delete-div{
+    background-color: var(--bg-main);
+    width: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.confirm-msg-delete-div button,
+.genres-wrapper button{
+    background: var(--accent-gradient);
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: var(--text-main);
+    margin-left: 5rem;
+    min-width: 5rem;
+    transition: 500ms ease-in-out;
+}
+
+.confirm-msg-delete-div button:hover,
+.genres-wrapper button:hover{
+    transform: scale(1.05);
+}
+
+.confirm-msg-delete-div a{
+    color: var(--accent);
+}
+
+.genres-wrapper {
+    padding: 2rem;
+}
+
+.genres-wrapper h1{
+    text-align: center;
+    padding: 2rem;
+}
+
+.genres-wrapper section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    padding: 2rem;
+    background-color: var(--bg-main);
+    border-radius: 1rem;
+    gap: 5rem;
+}
+
+.genres-wrapper section .genre-card{
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--bg-card);
+    display: flex;
+    gap: 2rem;
+}
+
+.genres-wrapper section .genre-card a{
+    color: var(--accent);
+}
+
 @media(max-width: 900px) {
     h1 {
         font-size: 2rem;
@@ -517,5 +688,28 @@ main.admin-dashboard{
         flex-wrap: wrap;
         justify-content: center;
         row-gap: 4rem;
+    }
+
+    .messages-wrapper{
+        padding: 1rem;
+    }
+
+    .messages-wrapper .message-list{
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .messages-wrapper .message-list .msg-card{
+        padding: 1rem;
+    }
+
+    .message-wrapper .delete-msg{
+        padding: 0.5rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .message-wrapper .heading{
+        margin-top: 2rem;
     }
 }

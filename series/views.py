@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Series, Season, Episode
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+from .models import Series, Season, Episode
 from .forms import CreateSeriesForm, CreateSeasonForm, CreateEpisodeForm, UpdateSeriesForm
 
-class DeleteSeriesView(DeleteView):
+class DeleteSeriesView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
     template_name = 'series/delete_series.html'
     model = Series
     context_object_name = 'series'
@@ -16,7 +19,8 @@ class DeleteSeriesView(DeleteView):
         context['title'] = f'Delete {self.object.title}'
         return context
 
-class CreateEpisodeView(CreateView):
+class CreateEpisodeView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateEpisodeForm
     template_name = 'series/create_episode.html'
     success_url = '/accounts/admin-dashboard/'
@@ -26,7 +30,8 @@ class CreateEpisodeView(CreateView):
         context['title'] = 'Create an episode'
         return context
 
-class CreateSeasonView(CreateView):
+class CreateSeasonView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateSeasonForm
     template_name = 'series/create_season.html'
     success_url = '/accounts/admin-dashboard/'
@@ -36,7 +41,8 @@ class CreateSeasonView(CreateView):
         context['title'] = 'Create a season'
         return context
 
-class UpdateSeriesView(UpdateView):
+class UpdateSeriesView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'request.user.is_staff'
     model = Series
     form_class = UpdateSeriesForm
     template_name = 'series/update_series.html'
@@ -48,7 +54,8 @@ class UpdateSeriesView(UpdateView):
         context['title'] = 'Update a series'
         return context
 
-class CreateSeriesView(CreateView):
+class CreateSeriesView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
     form_class = CreateSeriesForm
     template_name = 'series/create_series.html'
     success_url = '/accounts/admin-dashboard/'

@@ -5,10 +5,12 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import CreateView, DetailView, UpdateView, View, TemplateView
+
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from content.models import Post, Tag
 from series.models import Series, Season, Episode
 from movies.models import Movie, Actor, Genre
+from core.models import Message
 
 class AdminDashboardView(PermissionRequiredMixin, TemplateView):
     template_name = 'accounts/admin-dashboard.html'
@@ -25,6 +27,7 @@ class AdminDashboardView(PermissionRequiredMixin, TemplateView):
         context['actors'] = Actor.objects.all().order_by('name')
         context['genres'] = Genre.objects.all().order_by('name')
         context['tags'] = Tag.objects.all().order_by('name')
+        context['messages'] = Message.objects.all().order_by('-recieved_at')
         
         return context
 

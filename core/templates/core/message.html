@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main class="message-wrapper">
+    <p class="heading">Message from <a href="mailto:{{ msg.sender_email }}">{{ msg.sender_email }}</a></p>
+    <a href="{% url 'core:delete-message' msg.id %}" class="delete-msg"><i class="fas fa-trash"></i> Delete</a>
+    <section class="message-container">
+        <h2>Sub: {{ msg.title | title }}</h2>
+        <p class="recieve-time"><i class="fa-regular fa-clock"></i> &middot; <span>{{ msg.recieved_at | timesince }} <small>ago</small></span></p>
+        <p class="msg-content">{{ msg.content }}</p>
+    </section>
+</main>
+{% endblock content %}

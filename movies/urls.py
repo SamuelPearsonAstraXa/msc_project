@@ -5,6 +5,8 @@ app_name = 'movies'
 
 urlpatterns = [
     path('', views.MoviesListView.as_view(), name='home'),
+    path('genres/', views.GenresView.as_view(), name='genres'),
+    path('genres/delete/<str:id>/', views.DeleteGenreView.as_view(), name='delete-genre'),
     path('create/', views.CreateMovieView.as_view(), name='create-movie'),
     path('create/actor/', views.CreateActorView.as_view(), name='create-actor'),
     path('create/genre/', views.CreateGenreView.as_view(), name='create-genre'),

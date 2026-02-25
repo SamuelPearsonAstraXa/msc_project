@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'core/scripts/index.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main class="messages-wrapper">
+    <h1>Messages from web visitors</h1>
+    <section class="message-list">
+        {% for msg in messages %}
+            <a href="{% url 'core:message' msg.id %}" class="msg-card">
+                <p>From: {{ msg.sender_email }}</p>
+                <span><i class="fa-regular fa-clock"></i> &middot; {{ msg.recieved_at | timesince }} <small>ago</small></span>
+                <h6>Sub: {{ msg.title | title }}</h6>
+                <p class="content">{{ msg.content | truncatechars:50 }}</p>
+            </a>
+        {% empty %}
+            <p>No messages have been recieved.</p>
+        {% endfor %}
+    </section>
+</main>
+{% endblock content %}

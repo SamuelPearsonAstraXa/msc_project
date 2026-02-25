@@ -1,10 +1,14 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+from .models import Post
 from .forms import CreatePostForm, CreateTagForm, UpdatePostForm
 
-class CreateTagView(CreateView):
+class CreateTagView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     form_class = CreateTagForm
     template_name = 'content/create_tag.html'
     success_url = '/accounts/admin-dashboard/'
@@ -14,7 +18,9 @@ class CreateTagView(CreateView):
         context['title'] = 'Create tag'
         return context
     
-class DeleteDidYouKnowView(DeleteView):
+class DeleteDidYouKnowView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     template_name = 'content/delete_did_you_know.html'
     model = Post
     context_object_name = 'post'
@@ -26,7 +32,9 @@ class DeleteDidYouKnowView(DeleteView):
         context['title'] = f'Delete {self.object.title}'
         return context
     
-class DeleteLeakView(DeleteView):
+class DeleteLeakView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     template_name = 'content/delete_leak.html'
     model = Post
     context_object_name = 'post'
@@ -38,7 +46,9 @@ class DeleteLeakView(DeleteView):
         context['title'] = f'Delete {self.object.title}'
         return context
     
-class DeleteNewsView(DeleteView):
+class DeleteNewsView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     template_name = 'content/delete_news.html'
     model = Post
     context_object_name = 'post'
@@ -50,7 +60,9 @@ class DeleteNewsView(DeleteView):
         context['title'] = f'Delete {self.object.title}'
         return context
 
-class UpdatePostView(UpdateView):
+class UpdatePostView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     form_class = CreatePostForm
     model = Post
     form_class = UpdatePostForm
@@ -70,7 +82,9 @@ class UpdatePostView(UpdateView):
         context['title'] = f'Update {self.object.title}'
         return context
 
-class CreatePostView(CreateView):
+class CreatePostView(PermissionRequiredMixin, CreateView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
     form_class = CreatePostForm
     template_name = 'content/create_post.html'
     success_url = '/accounts/admin-dashboard/'

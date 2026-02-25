@@ -50,7 +50,12 @@
                 <p>{{ posts.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a href="{% url 'core:messages' %}" class="stat-card">
+                <h3>Total Messages</h3>
+                <p>{{ messages.count }}</p>
+            </a>
+
+            <a href="{% url 'movies:genres' %}" class="stat-card">
                 <h3>Total Genres</h3>
                 <p>{{ genres.count }}</p>
             </a>
