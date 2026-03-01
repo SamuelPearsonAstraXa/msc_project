@@ -19,23 +19,33 @@
 
 <main class="detail-content">
     {% if request.user.is_staff %}
-        <a class="delete-link" href="{% url 'content:delete-news' post.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
+        <a class="delete-link" href="{% url 'content:delete-fact' post.id %}"><i class="fas fa-trash"></i> &nbsp; Delete</a>
     {% endif %}
     {% if request.user.is_staff %}
-        <a class="update-link" href="{% url 'content:update-news' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
+        <a class="update-link" href="{% url 'content:update-fact' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
     {% endif %}
 
-    <h1 id="detailTitle">{{ post.title }}</h1>
+    <h1>{{ post.title }}</h1>
 
-    <div class="meta">{{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
+    {% for block in post.blocks.all %}
 
-    <img src="{{ post.thmbnail.url }}" id="detailImage" class="detail-image">
+        {% if block.type == "text" %}
+            <p class="content-text">
+                {{ block.text|linebreaks }}
+            </p>
 
-    <div class="ad ad-horizontal">
-        <p>Advertisement</p>
-    </div>
+        {% elif block.type == "image" %}
+            <div class="content-image">
+                <img src="{{ block.image.url }}" alt="">
+            </div>
 
-    <div id="detailText">{{ post.content }}</div>
+        {% elif block.type == "quote" %}
+            <blockquote>
+                {{ block.text }}
+            </blockquote>
+        {% endif %}
+
+    {% endfor %}
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>

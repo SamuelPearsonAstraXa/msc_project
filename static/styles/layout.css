@@ -20,8 +20,9 @@ body.dark {
     --bg-transparent: rgba(0, 0, 0, 0.6);
     --text-main: #ffffff;
     --text-muted: #aaaaaa;
-    --accent: #ff3d00;
-    --accent-gradient: linear-gradient(90deg, #ff3d00, #ff9100);
+    --accent: #38B7FE;
+    /* --accent: #ff3d00; */
+    --accent-gradient: linear-gradient(90deg, #38B7FE, #59E2E8);
 }
 
 /* ===== LIGHT THEME ===== */
@@ -34,8 +35,8 @@ body.light {
     --bg-transparent: rgba(255, 255, 255, 0.6);
     --text-main: #111111;
     --text-muted: #555555;
-    --accent: #ff3d00;
-    --accent-gradient: linear-gradient(90deg, #ff3d00, #ff9100);
+    --accent: #38B7FE;
+    --accent-gradient: linear-gradient(90deg, #38B7FE, #59E2E8);
 }
 
 
@@ -283,15 +284,14 @@ footer ul li a:hover{
     width: 100%;
     padding: 1.2rem;
     margin: 1rem 0;
-    background: var(--bg-card);
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid #38B7FE;
     color: var(--text-main);
 }
 
 .auth-card button {
     width: 100%;
     padding: 1.2rem;
-    background: #ff3d00;
+    background: #38B7FE;
     border: none;
     color: var(--text-main);
     cursor: pointer;
@@ -310,14 +310,14 @@ footer ul li a:hover{
 }
 
 .auth-card form button[type='submit'] {
-    background: linear-gradient(90deg, #ff3d00, #ff9100);
+    background: linear-gradient(90deg, #38B7FE, #59E2E8);
     border-radius: 8px;
     transition: 500ms ease-in-out;
     font-size: 1.6rem;
 }
 
 .auth-card form button[type='submit']:hover {
-    background: linear-gradient(90deg, #ff9100, #ff3d00);
+    background: linear-gradient(90deg, #59E2E8, #38B7FE);
 }
 
 .auth-card form div{
@@ -348,7 +348,7 @@ footer ul li a:hover{
 }
 
 .auth-card fieldset p a{
-    color: #ff3d00;
+    color: #38B7FE;
 }
 
 .auth-card .helptext{
@@ -378,7 +378,7 @@ footer ul li a:hover{
 }
 
 #id_username:focus, #id_password:focus{
-    outline: 2px solid #ff3d00;
+    outline: 2px solid #38B7FE;
 }
 
 main.admin-dashboard{
@@ -614,6 +614,130 @@ main.admin-dashboard{
 
 .genres-wrapper section .genre-card a{
     color: var(--accent);
+}
+
+
+.content-text {
+    font-size: 18px;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+.content-image img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 25px 0;
+}
+
+blockquote {
+    border-left: 0.4rem solid #38B7FE;
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: #888;
+    margin: 2rem 0;
+}
+
+.editor-container {
+    max-width: 90rem;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.editor-container select {
+    width: 100%;
+    border: none;
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-size: 1.6rem;
+    padding: 1rem;
+    outline: 1px solid;
+    margin-bottom: 2rem;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.publish-btn {
+    background: var(--accent);
+    border: none;
+    padding: 1rem 2rem;
+    color: var(--text-main);
+    border-radius: 0.8rem;
+    cursor: pointer;
+}
+
+.post-meta input {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.8rem;
+    border: none;
+}
+
+.block-builder {
+    margin-top: 3rem;
+}
+
+.block {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.block textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    resize: vertical;
+    min-height: 10rem;
+    font-size: 1.6rem;
+    outline: 1px solid;
+    padding: 1rem;
+}
+
+.block h5{
+    margin-top: 1rem;
+}
+
+.block input[type="file"] {
+    margin-top: 1rem;
+}
+
+.block-controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.block-controls button {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.add-block {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.add-block button {
+    background: var(--accent);
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 8px;
+    color: var(--text-main);
+    cursor: pointer;
 }
 
 @media(max-width: 900px) {

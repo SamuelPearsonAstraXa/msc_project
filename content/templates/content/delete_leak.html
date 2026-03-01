@@ -24,28 +24,58 @@
 
     <form action="" method="post">
         {% csrf_token %}
-        <p>Are you sure about deleting the leak?</p>
-        <a href="{% url 'content:leak_detail' post.id %}" style="color: var(--text-main); border-bottom: 1px solid;">Cancel</a>
+        <p>Are you sure about deleting the Leak?</p>
+        <a href="{% url 'content:leak-detail' post.id %}" style="color: var(--text-main); border-bottom: 1px solid;">Cancel</a>
         <button type="submit" class="delete-btn">Yes</button>
     </form>
 
     <br><br>
-    <div class="meta">By {{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
+    <div class="meta">{{ post.author }} | {{ post.create_date | timesince }} <small>ago</small></div>
 
-    <img src="{{ post.featured_image.url }}" id="detailImage" class="detail-image">
+    <img src="{{ post.thmbnail.url }}" id="detailImage" class="detail-image">
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
-    <p id="detailText">{{ post.content }}</p>
+    {% for block in post.blocks.all %}
+
+        {% if block.type == "text" %}
+            <p class="content-text">
+                {{ block.text|linebreaks }}
+            </p>
+
+        {% elif block.type == "image" %}
+            <div class="content-image">
+                <img src="{{ block.image.url }}" alt="">
+            </div>
+
+        {% elif block.type == "quote" %}
+            <blockquote>
+                {{ block.text }}
+            </blockquote>
+        {% endif %}
+
+    {% endfor %}
+
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
     <h3 class="related-title">Related Articles</h3>
-    <div class="related-grid" id="relatedPosts"></div>
+    <div class="related-grid" id="relatedPosts">
+        {% for r_post in related_posts %}
+            {% if r_post.id != post.id %}
+                <div class="post-card">
+                    <img src="{{ r_post.thumbnail.url }}">
+                    <div class="content">
+                        <h4>{{ r_post.title }}</h4>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </main>
 

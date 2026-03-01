@@ -62,7 +62,7 @@ main{
     padding: 1.2rem 2rem;
     display: block;
     border: none;
-    background: linear-gradient(90deg, #ff3d00, #ff9100);
+    background: var(--accent-gradient);
     color: white;
     font-weight: 600;
     cursor: pointer;

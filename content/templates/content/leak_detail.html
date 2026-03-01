@@ -25,24 +25,45 @@
         <a class="update-link" href="{% url 'content:update-leak' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
     {% endif %}
 
-    <h1 id="detailTitle">{{ post.title }}</h1>
+    <h1>{{ post.title }}</h1>
 
-    <div class="meta">By {{ post.author }} | {{ post.created_at | timesince }} <small>ago</small></div>
+    {% for block in post.blocks.all %}
 
-    <img src="{{ post.featured_image.url }}" id="detailImage" class="detail-image">
+        {% if block.type == "text" %}
+            <p class="content-text">
+                {{ block.text|linebreaks }}
+            </p>
 
-    <div class="ad ad-horizontal">
-        <p>Advertisement</p>
-    </div>
+        {% elif block.type == "image" %}
+            <div class="content-image">
+                <img src="{{ block.image.url }}" alt="">
+            </div>
 
-    <p id="detailText">{{ post.content }}</p>
+        {% elif block.type == "quote" %}
+            <blockquote>
+                {{ block.text }}
+            </blockquote>
+        {% endif %}
+
+    {% endfor %}
 
     <div class="ad ad-horizontal">
         <p>Advertisement</p>
     </div>
 
     <h3 class="related-title">Related Articles</h3>
-    <div class="related-grid" id="relatedPosts"></div>
+    <div class="related-grid" id="relatedPosts">
+        {% for r_post in related_posts %}
+            {% if r_post.id != post.id %}
+                <div class="post-card">
+                    <img src="{{ r_post.thumbnail.url }}">
+                    <div class="content">
+                        <h4>{{ r_post.title }}</h4>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </main>
 

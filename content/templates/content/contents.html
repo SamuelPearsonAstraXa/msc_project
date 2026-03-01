@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'content/styles/styles.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <section class="page-header">
+        <h1>Latest Movie News</h1>
+    </section>
+
+    <div class="main-layout">
+
+        <main class="category-content">
+
+            <div class="ad ad-horizontal">
+                <p>Advertisement</p>
+            </div>
+
+            <section id="posts_container" class="posts">
+                {% for content in contents %}
+                    <a href="{% url 'content:content' content.id %}" class="post-card">
+                        <img src="{{content.thumbnail.url }}" alt="{{content.title }}">
+                        <div class="content">
+                            <h4>{{content.title }}</h4>
+                        </div>
+                    </a>
+                {% endfor %}
+            </section>
+
+        </main>
+
+        <aside class="sidebar">
+            <div class="ad ad-sidebar">
+                <p>Advertisement</p>
+            </div>
+        </aside>
+
+    </div>
+</main>
+{% endblock content %}

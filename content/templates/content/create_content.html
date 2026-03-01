@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/layout.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'content/scripts/create-content.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="editor-container">
+
+        <form action="" method="post" id="create-content-form">
+            {% csrf_token %}
+            <!-- Header -->
+            <div class="editor-header">
+                <h1>Create New Post</h1>
+                <button id="publishBtn" class="publish-btn" type="submit">Publish</button>
+            </div>
+
+            <!-- Basic Info -->
+            <div class="post-meta">
+                <label for="postCategory">Post Category</label>
+                <select name="" id="postCategory">
+                    <option value="facts">Fact</option>
+                    <option value="leaks">Leaks</option>
+                    <option value="stories">Stories</option>
+                </select>
+                <input type="text" id="postTitle" placeholder="Post Title">
+                <input type="file" id="postThumbnail" accept="image/*">
+            </div>
+
+            <!-- Block Builder -->
+            <div class="block-builder">
+
+                <div id="blocksContainer"></div>
+
+                <!-- Add Block Controls -->
+                <div class="add-block">
+                    <button type="button" onclick="addTextBlock()">+ Text</button> &nbsp;
+                    <button type="button" onclick="addImageBlock()">+ Image</button> &nbsp;
+                    <button type="button" onclick="addQuoteBlock()">+ Quote</button>
+                </div>
+
+            </div>
+
+            <div id="response_msg"></div>
+        </form>
+
+    </div>
+</main>
+{% endblock content %}

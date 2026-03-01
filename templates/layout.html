@@ -31,12 +31,12 @@
         <nav class="nav">
             <ul>
                 <!-- <li><a href="#">Home</a></li> -->
-                <li><a href="{% url 'content:news' %}">News</a></li>
+                <li><a href="{% url 'content:stories' %}">Stories</a></li>
                 <li><a href="{% url 'content:leaks' %}">Leaks</a></li>
                 <li><a href="{% url 'movies:home' %}">Movies</a></li>
                 <li><a href="{% url 'series:home' %}">Series</a></li>
                 <li><a href="{% url 'core:contact' %}">Contact us</a></li>
-                <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
+                <li><a href="{% url 'content:facts' %}">Did You Know?</a></li>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'accounts:admin-dashboard' %}">Dashboard</a></li>
@@ -52,12 +52,12 @@
         <nav class="popup-nav">
             <ul>
                 <!-- <li><a href="#">Home</a></li> -->
-                <li><a href="{% url 'content:news' %}"><span>News</span></a></li>
+                <li><a href="{% url 'content:stories' %}"><span>Stories</span></a></li>
                 <li><a href="{% url 'content:leaks' %}">Leaks</a></li>
                 <li><a href="{% url 'movies:home' %}">Movies</a></li>
                 <li><a href="{% url 'series:home' %}">Series</a></li>
                 <li><a href="{% url 'core:contact' %}">Contact us</a></li>
-                <li><a href="{% url 'content:did_you_know' %}">Did You Know?</a></li>
+                <li><a href="{% url 'content:facts' %}">Did You Know?</a></li>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
                         <li><a href="{% url 'accounts:admin-dashboard' %}">Dashboard</a></li>

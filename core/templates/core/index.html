@@ -33,13 +33,12 @@
         <!-- FEATURED ARTICLE -->
         <section class="featured">
             <div class="featured-image">
-                <img src="{{ featured_post.featured_image.url }}" alt="{{ featured_post.title }}">
+                <img src="{{ trending_content.thumbnail.url }}" alt="{{ trending_content.title }}">
             </div>
             <div class="featured-info">
-                <span class="tag"><i class="fas fa-arrow-turn-up"></i> Trending now</span>
-                <h2>{{ featured_post.title }}</h2>
-                <p>{{ featured_post.content | truncatechars:30 }}</p>
-                <a href="{% url 'content:news_detail' featured_post.id %}">Read Full Story</a>
+                <span class="tag"><i class="fas fa-arrow-turn-up"></i> Trending now | {{ trending_content.category }}</span>
+                <h2>{{ trending_content.title }}</h2>
+                <a href="{% url 'content:story-detail' trending_content.id %}">Read Full Story</a>
             </div>
         </section>
 

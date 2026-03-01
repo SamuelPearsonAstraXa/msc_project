@@ -32,11 +32,10 @@ async function fetch_posts(post_type) {
             }
 
             posts_container.innerHTML += `
-                <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                <a href='/content/${post.category}/${post.id}/' class="post-card">
                     <img src="${post.thumbnail}" alt="${post.title}">
                     <div class="content">
                         <h4>${post.title}</h4>
-                        <p>${post.content.slice(0,45)}...</p>
                     </div>
                 </a>
             `;
@@ -68,11 +67,10 @@ async function fetch_all_posts() {
             }
 
             posts_container.innerHTML += `
-                <a href='/content/${post.post_type}/${post.id}/' class="post-card">
+                <a href='/content/${post.category}/${post.id}/' class="post-card">
                     <img src="${post.thumbnail}" alt="${post.title}">
                     <div class="content">
                         <h4>${post.title}</h4>
-                        <p>${post.content.slice(0,45)}...</p>
                     </div>
                 </a>
             `;
@@ -83,14 +81,14 @@ async function fetch_all_posts() {
 }
 
 switch (location.href) {
-    case  'http://127.0.0.1:8000/content/did_you_know/':
-        fetch_posts('did_you_know')
+    case  'http://127.0.0.1:8000/content/facts/':
+        fetch_posts('facts')
         break;
     case 'http://127.0.0.1:8000/content/leaks/':
         fetch_posts('leaks')
         break;
-    case 'http://127.0.0.1:8000/content/news/':
-        fetch_posts('news')
+    case 'http://127.0.0.1:8000/content/stories/':
+        fetch_posts('stories')
         break;
     default:
         fetch_all_posts()

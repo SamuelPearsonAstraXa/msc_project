@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from content.models import Post
+from content.models import Post, Content
 from movies.models import Movie
 from series.models import Series
 from .forms import ContactForm
@@ -128,7 +128,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
-        context['featured_post'] = Post.objects.filter(is_featured=True)[0]
+        context['trending_content'] = Content.objects.filter(is_trending=True)[0]
         return context
     
 def fetch_search_results(request):
@@ -172,14 +172,13 @@ def fetch_search_results(request):
     
 def fetch_posts(request):
     posts = []
-    p_results = Post.objects.all()
+    p_results = Content.objects.all()
     for p_result in p_results:
         result = {
             'id': p_result.id,
             'title': p_result.title,
             'thumbnail': p_result.thumbnail.url,
-            'content': p_result.content,
-            'post_type': p_result.post_type,
+            'category': p_result.category,
             'slug': p_result.slug,
         }
         posts.append(result)

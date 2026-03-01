@@ -13,8 +13,8 @@
 /* :root {
     --bg-dark: #0f0f0f;
     --bg-card: #1a1a1a;
-    --accent: #ff3d00;
-    --accent-gradient: linear-gradient(90deg, #ff3d00, #ff9100);
+    --accent: #38B7FE;
+    --accent-gradient: linear-gradient(90deg, #38B7FE, #ff9100);
     --text-light: #ffffff;
     --text-muted: #aaaaaa;
     --radius: 14px;
@@ -35,8 +35,8 @@ body.dark {
     --bg-soft: #151515;
     --text-main: #ffffff;
     --text-muted: #aaaaaa;
-    --accent: #ff3d00;
-    --accent-gradient: linear-gradient(90deg, #ff3d00, #ff9100);
+    --accent: #38B7FE;
+    --accent-gradient: linear-gradient(90deg, #38B7FE, #ff9100);
 }
 
 /* ===== LIGHT THEME ===== */
@@ -46,8 +46,8 @@ body.light {
     --bg-soft: #eaeaea;
     --text-main: #111111;
     --text-muted: #555555;
-    --accent: #ff3d00;
-    --accent-gradient: linear-gradient(90deg, #ff3d00, #ff9100);
+    --accent: #38B7FE;
+    --accent-gradient: linear-gradient(90deg, #38B7FE, #ff9100);
 }
 
 
@@ -97,7 +97,7 @@ button:active {
 .logo {
     font-size: 22px;
     font-weight: 700;
-    color: #ff3d00;
+    color: #38B7FE;
 }
 
 .nav ul {
@@ -113,7 +113,7 @@ button:active {
 }
 
 .nav a:hover {
-    color: #ff3d00;
+    color: #38B7FE;
 }
 
 
@@ -216,7 +216,7 @@ button:active {
     margin-top: 10px;
     padding: 10px 15px;
     border: none;
-    background-color: #ff3d00;
+    background-color: #38B7FE;
     color: #fff;
     cursor: pointer;
 } */
@@ -256,7 +256,7 @@ button:active {
     margin-top: 15px;
     padding: 12px 20px;
     border: none;
-    background: linear-gradient(90deg, #ff3d00, #ff9100);
+    background: linear-gradient(90deg, #38B7FE, #ff9100);
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -269,7 +269,7 @@ button:active {
 }
 
 .tag {
-    background-color: #ff3d00;
+    background-color: #38B7FE;
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 4px;
@@ -532,7 +532,7 @@ button:active {
 .auth-card button {
     width: 100%;
     padding: 12px;
-    background: #ff3d00;
+    background: #38B7FE;
     border: none;
     color: white;
     cursor: pointer;
