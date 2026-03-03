@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import CreateView, DetailView, UpdateView, View, TemplateView
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from content.models import Post, Tag
+from content.models import Post, Tag, Content
 from series.models import Series, Season, Episode
 from movies.models import Movie, Actor, Genre
 from core.models import Message
@@ -19,6 +19,7 @@ class AdminDashboardView(PermissionRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Dashboard'
+        context['contents'] = Content.objects.all().order_by('-create_date')
         context['posts'] = Post.objects.all().order_by('-created_at')
         context['movies'] = Movie.objects.all().order_by('-create_date')
         context['series'] = Series.objects.all().order_by('-release_date')

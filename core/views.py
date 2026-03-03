@@ -25,7 +25,7 @@ class SearchView(ListView):
 
             movies = Movie.objects.filter(title__icontains=search_query)
             series = Series.objects.filter(title__icontains=search_query)
-            posts = Post.objects.filter(title__icontains=search_query)
+            posts = Content.objects.filter(title__icontains=search_query)
 
             for movie in movies:
                 search_results.append(movie)
@@ -37,34 +37,6 @@ class SearchView(ListView):
             context['search_results'] = search_results
             if search_query != 'None' or search_query.strip() != ' ':
                 context['search_query'] = search_query
-
-            # for m_r in movies:
-            #     movie = {
-            #         'id':m_r.id,
-            #         'title':m_r.title,
-            #         'description':m_r.description,
-            #         'thumbnail':m_r.thumbnail.url,
-            #         'type':'movie',
-            #     }
-            #     search_results.append(movie)
-            # for serie in series:
-            #     s_r = {
-            #         'id':serie.id,
-            #         'title':serie.title,
-            #         'description':serie.description,
-            #         'thumbnail':serie.thumbnail.url,
-            #         'type':'serie',
-            #     }
-            #     search_results.append(s_r)
-            # for post in posts:
-            #     p_r = {
-            #         'id':post.id,
-            #         'title':post.title,
-            #         'description':post.description,
-            #         'thumbnail':post.thumbnail.url,
-            #         'type':'post',
-            #     }
-            #     search_results.append(p_r)
 
         return context
 

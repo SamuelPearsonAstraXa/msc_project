@@ -291,14 +291,13 @@ def fetch_facts(request):
 
 def fetch_posts(request):
     posts = []
-    p_results = Post.objects.all().order_by('-created_at')
+    p_results = Content.objects.all().order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,
             'title': p_result.title,
             'thumbnail': p_result.thumbnail.url,
-            'content': p_result.content,
-            'post_type': p_result.post_type,
+            'category': p_result.category,
             'slug': p_result.slug,
         }
         posts.append(result)

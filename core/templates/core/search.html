@@ -36,7 +36,7 @@
         <button class="filter active" data-type="all">All</button>
         <button class="filter" data-type="movie">Movies</button>
         <button class="filter" data-type="series">Series</button>
-        <button class="filter" data-type="news">News</button>
+        <button class="filter" data-type="stories">Stories</button>
         <button class="filter" data-type="actor">Actors</button>
     </section>
 
@@ -44,8 +44,8 @@
         <!-- Dynamic Results -->
         {% if search_results.count != 0 %}
             {% for obj in search_results %}
-                {% if obj.post_type == 'did_you_know' %}
-                    <a href="{% url 'content:did_you_know_detail' obj.id %}" class="result-card">
+                {% if obj.category == 'facts' %}
+                    <a href="{% url 'content:fact-detail' obj.id %}" class="result-card">
                         <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                         <div class="result-content">
                             <h3>{{ obj.title | truncatechars:20 }}</h3>
@@ -53,8 +53,8 @@
                         </div>
                     </a>
                 {% else %}
-                    {% if obj.post_type == 'leaks' %}
-                        <a href="{% url 'content:leak_detail' obj.id %}" class="result-card">
+                    {% if obj.category == 'leaks' %}
+                        <a href="{% url 'content:leak-detail' obj.id %}" class="result-card">
                             <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                             <div class="result-content">
                                 <h3>{{ obj.title | truncatechars:20 }}</h3>
@@ -62,21 +62,21 @@
                             </div>
                         </a>
                     {% else %}
-                        {% if obj.post_type == 'news' %}
-                            <a href="{% url 'content:news_detail' obj.id %}" class="result-card">
+                        {% if obj.category == 'stories' %}
+                            <a href="{% url 'content:story-detail' obj.id %}" class="result-card">
                                 <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                                 <div class="result-content">
                                     <h3>{{ obj.title | truncatechars:20 }}</h3>
-                                    <span>{{ obj.post_type | title }}</span>
+                                    <span>Story</span>
                                 </div>
                             </a>
                         {% else %}
-                            {% if obj.post_type == 'movie' %}
+                            {% if obj.category == 'movies' %}
                                 <a href="{% url 'movies:detail' obj.id %}" class="result-card">
                                     <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                                     <div class="result-content">
                                         <h3>{{ obj.title | truncatechars:20 }}</h3>
-                                        <span>{{ obj.post_type | title }}</span>
+                                        <span>Movie</span>
                                     </div>
                                 </a>
                             {% else %}
@@ -84,7 +84,7 @@
                                     <img src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}">
                                     <div class="result-content">
                                         <h3>{{ obj.title | truncatechars:20 }}</h3>
-                                        <span>{{ obj.post_type | title }}</span>
+                                        <span>Series</span>
                                     </div>
                                 </a>
                             {% endif %}

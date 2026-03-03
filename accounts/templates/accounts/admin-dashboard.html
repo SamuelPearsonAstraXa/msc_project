@@ -46,6 +46,11 @@
             </a>
 
             <a href="{% url 'content:home' %}" class="stat-card">
+                <h3>Total Contents</h3>
+                <p>{{ contents.count }}</p>
+            </a>
+
+            <a href="{% url 'content:home' %}" class="stat-card">
                 <h3>Total Posts</h3>
                 <p>{{ posts.count }}</p>
             </a>
