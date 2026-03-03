@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'content/styles/styles.css' %}">
+<link rel="stylesheet" href="{% static 'content/styles/edit_content.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'content/scripts/edit_content.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+
+<form id="edit-content-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="text" id="postTitle" name="title"
+           value="{{ content.title }}" placeholder="Title">
+
+    <div class="post-thumbnail">
+        <h5>Post thumbnail</h5>
+        <input type="file" id="thumbnailInput" name="thumbnail">
+        {% if content.thumbnail %}
+            <img src="{{ content.thumbnail.url }}" width="150">
+        {% endif %}
+    </div>
+
+    <div id="blocksContainer">
+
+        {% for block in content.blocks.all %}
+        <div class="block"
+             data-id="{{ block.id }}"
+             data-type="{{ block.type }}">
+
+            <div class="block-controls">
+                <button type="button" onclick="moveUp(this)"><i class="fas fa-arrow-up"></i></button>
+                <button type="button" onclick="moveDown(this)"><i class="fas fa-arrow-down"></i></button>
+                <button type="button" onclick="removeBlock(this)"><i class="fas fa-xmark"></i></button>
+            </div>
+
+            {% if block.type == "text" %}
+                <h5>Paragraph</h5>
+                <textarea>{{ block.text }}</textarea>
+            {% elif block.type == "quote" %}
+                <h5>Quote</h5>
+                <textarea>{{ block.text }}</textarea>
+            {% elif block.type == "image" %}
+                <h5>Image</h5>
+                {% if block.image %}
+                    <img src="{{ block.image.url }}" width="150">
+                {% endif %}
+                <input type="file">
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <button id="updateBtn">Update Post</button>
+
+    <div id="response_msg"></div>
+</form>
+{% endblock content %}

@@ -82,7 +82,12 @@ class Content(models.Model):
         super().save(update_fields=["thumbnail"])
 
     def get_absolute_url(self):
-        return reverse('content:content', kwargs={'id':self.id})
+        if self.category == 'facts':
+            return reverse('content:fact-detail', kwargs={'id':self.id})
+        elif self.category == 'stories':
+            return reverse('content:story-detail', kwargs={'id':self.id})
+        else:
+            return reverse('content:leak-detail', kwargs={'id':self.id})
 
 class Tag(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)

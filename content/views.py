@@ -1,6 +1,6 @@
 import json
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, View
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.db import transaction
@@ -9,6 +9,89 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import Post, Content, ContentBlock
 from .forms import CreatePostForm, CreateTagForm, UpdatePostForm
+
+# content/views.py
+
+class UpdateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def get(self, request, id):
+        content = get_object_or_404(Content, id=id)
+        return render(request, "content/edit_content.html", {
+            "content": content
+        })
+
+    def post(self, request, id):
+
+        content = get_object_or_404(Content, id=id)
+
+        try:
+            with transaction.atomic():
+
+                # Update basic fields
+                content.title = request.POST.get("title")
+
+                if request.FILES.get("thumbnail"):
+                    if content.thumbnail:
+                        content.thumbnail.delete(save=False)
+                    content.thumbnail = request.FILES.get("thumbnail")
+
+                content.save()
+
+                submitted_ids = []
+
+                index = 0
+                while True:
+
+                    block_type = request.POST.get(f"blocks[{index}][type]")
+                    if block_type is None:
+                        break
+
+                    block_id = request.POST.get(f"blocks[{index}][id]")
+                    text = request.POST.get(f"blocks[{index}][text]")
+                    image = request.FILES.get(f"blocks[{index}][image]")
+
+                    if block_id:
+                        block = ContentBlock.objects.get(id=block_id, content=content)
+
+                        block.type = block_type
+                        block.text = text
+                        block.order = index
+
+                        if image:
+                            if block.image:
+                                block.image.delete(save=False)
+                            block.image = image
+
+                        block.save()
+                        submitted_ids.append(block.id)
+
+                    else:
+                        new_block = ContentBlock.objects.create(
+                            content=content,
+                            type=block_type,
+                            text=text,
+                            image=image,
+                            order=index
+                        )
+                        submitted_ids.append(new_block.id)
+
+                    index += 1
+
+                # Delete removed blocks
+                ContentBlock.objects.filter(content=content)\
+                    .exclude(id__in=submitted_ids)\
+                    .delete()
+
+            return JsonResponse({
+                "success": True,
+                "success_url": content.get_absolute_url()
+            })
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
 
 class CreateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
 
