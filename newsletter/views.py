@@ -25,10 +25,7 @@ class ConfirmSubscriptionView(View):
 
         subscriber.is_active = True
         subscriber.save()
-
-        # return JsonResponse({
-        #     "message": "Subscription confirmed!"
-        # })
+        
         return render(request, 'newsletter/subscription_done.html', {'title':'Subscription done'})
 
 class SubscribeView(View):
