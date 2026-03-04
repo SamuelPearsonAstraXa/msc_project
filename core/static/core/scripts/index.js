@@ -73,6 +73,27 @@ async function fetch_posts() {
 
 fetch_posts()
 
-// setInterval(() => {
-//     fetch_posts()
-// }, 10000);
+document.getElementById("newsletterForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("email", document.getElementById("subscriberEmail").value);
+    formData.append("csrfmiddlewaretoken",
+        document.querySelector('[name=csrfmiddlewaretoken]').value
+    );
+
+    fetch("/newsletter/subscribe/", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("newsletterMessage").innerHTML =
+            `<p>${data.message}</p>`;
+        setTimeout(() => {
+            document.getElementById("newsletterMessage").style.display = 'none';
+        }, 10000);
+    });
+
+});

@@ -48,6 +48,21 @@
             <!-- Google AdSense Code Here -->
         </div>
 
+        <!-- Subscription to newsletter -->
+        <section class="newsletter-section">
+            <h3>Subscribe to our Newsletter</h3>
+            <p>Get notified when we publish new post.</p>
+
+            <form id="newsletterForm" method="POST">
+                {% csrf_token %}
+                <input type="email" id="subscriberEmail" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+
+            <div id="newsletterMessage">
+            </div>
+        </section>
+
 
         <!-- POSTS GRID -->
         <section class="posts" id="posts_container">

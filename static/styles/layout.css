@@ -741,6 +741,21 @@ blockquote {
     cursor: pointer;
 }
 
+.para-wrapper{
+    display: flex;
+    min-height: 60dvh;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.para-wrapper p:first-child{
+    margin-bottom: 2rem;
+}
+
+
+
 @media(max-width: 900px) {
     h1 {
         font-size: 2rem;

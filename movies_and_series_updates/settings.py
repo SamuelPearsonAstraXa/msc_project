@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'movies',
     'series',
     'content',
+    'newsletter',
 ]
 
 MIDDLEWARE = [
@@ -46,7 +47,17 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "samuelpearson577@gmail.com"
+EMAIL_HOST_PASSWORD = "rtgi gmfb zwyw xukh"
+DEFAULT_FROM_EMAIL = f'MovieNews <{EMAIL_HOST_USER}>'
+
+SITE_URL = "http://127.0.0.1:8000"
 
 ROOT_URLCONF = 'movies_and_series_updates.urls'
 

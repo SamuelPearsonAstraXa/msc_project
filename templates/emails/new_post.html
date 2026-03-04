@@ -1,0 +1,13 @@
+<h2>{{ content.title }}</h2>
+<p>A new post has been published on our website.</p>
+
+<a href="{{ SITE_URL }}{{ content.get_absolute_url }}">
+    Read Full Article
+</a>
+
+<hr>
+<p>
+    If you wish to unsubscribe,
+    click here:
+    {{ SITE_URL }}/newsletter/unsubscribe/{{ subscriber.token }}/
+</p>

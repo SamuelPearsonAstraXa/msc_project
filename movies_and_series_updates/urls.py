@@ -11,4 +11,5 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('series/', include('series.urls')),
     path('content/', include('content.urls')),
+    path("newsletter/", include("newsletter.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

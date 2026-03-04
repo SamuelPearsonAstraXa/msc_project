@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title}}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/styles/layoutcss' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="para-wrapper">
+        <div>
+            <p style="font-weight: 600;">Subscription done, successfully.</p>
+            <p>
+                You will be receiving notifications whenever a new post has been made on this site.
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock content %}

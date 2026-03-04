@@ -7,6 +7,11 @@ from django.db import transaction
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from newsletter.models import Subscriber
+from django.conf import settings
+
 from .models import Post, Content, ContentBlock
 from .forms import CreatePostForm, CreateTagForm, UpdatePostForm
 
@@ -139,6 +144,25 @@ class CreateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
                     )
 
                     index += 1
+
+            subscribers = Subscriber.objects.filter(is_active=True)
+
+            for sub in subscribers:
+                subject = f"New Post: {content.title}"
+                html_content = render_to_string("emails/new_post.html", {
+                    "content": content,
+                    "subscriber": sub
+                })
+
+                email = EmailMultiAlternatives(
+                    subject,
+                    "",
+                    settings.DEFAULT_FROM_EMAIL,
+                    [sub.email]
+                )
+
+                email.attach_alternative(html_content, "text/html")
+                email.send()
 
             return JsonResponse({
                 "success": True,

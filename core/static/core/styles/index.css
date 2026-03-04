@@ -47,7 +47,7 @@ main{
 
 .featured-info h2 {
     font-size: 3.6rem;
-    margin: 10px 0;
+    margin: 1rem 0;
     color: white;
 }
 
@@ -83,6 +83,46 @@ main{
     text-transform: uppercase;
 }
 
+.newsletter-section {
+    padding: 4rem;
+    text-align: center;
+    background: var(--bg-card);
+    border-top: 1px solid var(--accent);
+}
 
+.newsletter-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
 
-/* RESPONSIVE */
+.newsletter-section form{
+    margin-top: 2rem;
+}
+
+.newsletter-section input {
+    padding: 1rem 1.5rem;
+    width: 30rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    margin-right: 1rem;
+    outline-color: var(--accent);
+}
+
+.newsletter-section button {
+    padding: 1rem;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 6px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.newsletter-section #newsletterMessage p{
+    margin-top: 2rem;
+    background-color: rgba(0, 255, 0, 0.3);
+    width: max-content;
+    margin: auto;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    padding: 1rem;
+}
