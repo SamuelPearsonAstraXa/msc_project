@@ -860,4 +860,35 @@ blockquote {
     .detail-content{
         padding: 1rem;
     }
+
+    .para-wrapper{
+        padding: 1rem;
+        font-size: 1.6rem;
+    }
+}
+
+.loader{
+    width: 3rem;
+    height: 3rem;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    margin: auto;
+    margin-top: 2rem;
+    display: none;
+    position: relative;
+    top: 1rem;
+    margin-right: 1rem;
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0);
+    }100%{
+        transform: rotate(360deg);
+    }
 }

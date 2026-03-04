@@ -19,8 +19,10 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Latest Movie and Series Updates</h1>
-            <p>Your daily dose of movie news, leaks, and did you know facts.</p>
+            <div>
+                <h1>Latest Movie and Series Updates</h1>
+                <p>Your daily dose of movie news, leaks, and did you know facts.</p>
+            </div>
         </div>
     </section>
 
@@ -56,6 +58,7 @@
             <form id="newsletterForm" method="POST">
                 {% csrf_token %}
                 <input type="email" id="subscriberEmail" placeholder="Enter your email" required>
+                <div class="loader"></div>
                 <button type="submit">Subscribe</button>
             </form>
 

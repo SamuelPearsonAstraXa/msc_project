@@ -1,4 +1,5 @@
 const posts_container = document.getElementById("posts_container");
+const loader = document.querySelector('.loader');
 
 const faders = document.querySelectorAll(".post-card");
 
@@ -76,6 +77,7 @@ fetch_posts()
 document.getElementById("newsletterForm").addEventListener("submit", function(e){
 
     e.preventDefault();
+    loader.style.display = 'inline-block';
 
     const formData = new FormData();
     formData.append("email", document.getElementById("subscriberEmail").value);
@@ -89,8 +91,10 @@ document.getElementById("newsletterForm").addEventListener("submit", function(e)
     })
     .then(res => res.json())
     .then(data => {
+        loader.style.display = 'none';
         document.getElementById("newsletterMessage").innerHTML =
             `<p>${data.message}</p>`;
+        document.getElementById("subscriberEmail").value = '';
         setTimeout(() => {
             document.getElementById("newsletterMessage").style.display = 'none';
         }, 10000);

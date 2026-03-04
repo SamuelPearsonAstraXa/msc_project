@@ -6,10 +6,16 @@ main{
 .hero {
     height: 30rem;
     background: url('../images/hero.jpg') center/cover no-repeat;
+    text-align: center;
+}
+
+.hero-content{
+    background-color: var(--bg-transparent);
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 .hero h1 {
@@ -125,4 +131,20 @@ main{
     border-radius: 1rem;
     margin-top: 2rem;
     padding: 1rem;
+}
+
+@media screen and (max-width:60rem) {
+    .newsletter-section{
+        padding: 1rem;
+    }
+
+    .newsletter-section input{
+        width: 100%;
+    }
+
+    .newsletter-section button{
+        width: 100%;
+        display: block;
+        margin-top: 2rem;
+    }
 }
