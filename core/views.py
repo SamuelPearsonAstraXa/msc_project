@@ -23,9 +23,9 @@ class SearchView(ListView):
             context['searched'] = True
             search_results = []
 
-            movies = Movie.objects.filter(title__icontains=search_query)
-            series = Series.objects.filter(title__icontains=search_query)
-            posts = Content.objects.filter(title__icontains=search_query)
+            movies = Movie.objects.filter(title__icontains=search_query).order_by('-create_date')
+            series = Series.objects.filter(title__icontains=search_query).order_by('-release_date')
+            posts = Content.objects.filter(title__icontains=search_query).order_by('-create_date')
 
             for movie in movies:
                 search_results.append(movie)
@@ -144,7 +144,7 @@ def fetch_search_results(request):
     
 def fetch_posts(request):
     posts = []
-    p_results = Content.objects.all()
+    p_results = Content.objects.all().order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,

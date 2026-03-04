@@ -291,7 +291,7 @@ class FactDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Did you know?'
-        context['related_posts'] = Content.objects.filter(category=self.object.category)
+        context['related_posts'] = Content.objects.filter(category=self.object.category).order_by('-create_date')
         return context
 
 class FactsView(ListView):
@@ -312,7 +312,7 @@ class LeakDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Leak'
-        context['related_posts'] = Content.objects.filter(category=self.object.category)
+        context['related_posts'] = Content.objects.filter(category=self.object.category).order_by('-create_date')
         return context
 
 class LeaksView(ListView):
@@ -333,7 +333,7 @@ class StoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
-        context['related_posts'] = Content.objects.filter(category=self.object.category)
+        context['related_posts'] = Content.objects.filter(category=self.object.category).order_by('-create_date')
         return context
 
 class StoriesView(ListView):
@@ -356,7 +356,7 @@ class PostsView(ListView):
     
 def fetch_leaks(request):
     posts = []
-    p_results = Content.objects.filter(category='leaks')
+    p_results = Content.objects.filter(category='leaks').order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,
@@ -370,7 +370,7 @@ def fetch_leaks(request):
     
 def fetch_stories(request):
     posts = []
-    p_results = Content.objects.filter(category='stories')
+    p_results = Content.objects.filter(category='stories').order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,
@@ -384,7 +384,7 @@ def fetch_stories(request):
     
 def fetch_facts(request):
     posts = []
-    p_results = Content.objects.filter(category='facts')
+    p_results = Content.objects.filter(category='facts').order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,
