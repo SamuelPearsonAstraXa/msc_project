@@ -95,57 +95,57 @@
     border-radius: var(--radius);
 }
 
-
-
-
-
-.detail-content {
-    padding: 4rem;
-    background: #1e1e1e;
-    border-radius: 12px;
-}
-
 .detail-image {
     width: 100%;
-    margin: 20px 0;
-    border-radius: 12px;
+    margin: 2rem 0;
+    border-radius: 1rem;
 }
 
 .meta {
     color: #aaa;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .detail-content {
     background: var(--bg-card);
-    padding: 50px;
+    padding: 5rem;
     border-radius: var(--radius);
-    max-width: 850px;
+    max-width: 85rem;
 }
 
 .detail-content h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: 4rem;
+    margin-bottom: 2rem;
 }
 
 .detail-content p {
-    font-size: 17px;
+    font-size: 1.6rem;
     color: #ddd;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .detail-image {
     border-radius: var(--radius);
-    box-shadow: 0 15px 4rem rgba(0,0,0,0.6);
+    box-shadow: 0 1rem 4rem rgba(0,0,0,0.6);
 }
 
 .related-title {
-    margin-top: 50px;
-    margin-bottom: 20px;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
 }
 
 .related-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 20px;
+    gap: 2rem;
+}
+
+@media screen and (max-width:60rem) {
+    .cast-grid{
+        padding: 1rem;
+    }
+
+    .detail-content{
+        padding: 1rem;
+    }
 }

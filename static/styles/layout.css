@@ -130,7 +130,7 @@ footer ul li a:hover{
 /* ================= POSTS ===================== */
 .posts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -193,9 +193,9 @@ footer ul li a:hover{
 }
 
 .detail-content {
-    padding: 40px;
-    background: #1e1e1e;
-    border-radius: 12px;
+    padding: 4rem;
+    background: var(--bg-card);
+    border-radius: 1rem;
 }
 
 .detail-image {
@@ -618,15 +618,16 @@ main.admin-dashboard{
 
 
 .content-text {
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 1.8;
-    margin: 20px 0;
+    margin: 2rem 0;
+    text-align: center;
 }
 
 .content-image img {
     width: 100%;
     border-radius: 12px;
-    margin: 25px 0;
+    margin: 2.5rem 0;
 }
 
 blockquote {
@@ -835,5 +836,13 @@ blockquote {
 
     .message-wrapper .heading{
         margin-top: 2rem;
+    }
+
+    .block{
+        padding: 1rem;
+    }
+
+    .detail-content{
+        padding: 1rem;
     }
 }
