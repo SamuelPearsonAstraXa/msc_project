@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.db.models import Q
 
 from content.models import Post, Content
 from movies.models import Movie
@@ -108,9 +109,17 @@ def fetch_search_results(request):
     if request.method.GET.get('search_query'):
         search_query = request.method.GET.get('search_query')
 
-        posts_results = Post.objects.filter(title__icontains=search_query).order_by('-title')
-        movies_results = Movie.objects.filter(title__icontains=search_query).order_by('-title')
-        series_results = Series.objects.filter(title__icontains=search_query).order_by('-title')
+        posts_results = Content.objects.filter(
+            Q(title__icontains=search_query) | Q(category__icontains=search_query)
+            ).order_by('-title')
+        movies_results = Movie.objects.filter(
+            Q(title__icontains=search_query) | Q(description__icontains=search_query) |
+            Q(category__icontains=search_query)
+        ).order_by('-title')
+        series_results = Series.objects.filter(
+            Q(title__icontains=search_query) | Q(description__icontains=search_query) |
+            Q(category__icontains=search_query)
+        ).order_by('-title')
         for post_result in posts_results:
             result = {
                 'id': post_result.id,
