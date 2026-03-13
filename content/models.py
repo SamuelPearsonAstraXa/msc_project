@@ -49,6 +49,8 @@ class ContentCategory(models.TextChoices):
     STORIES = 'stories'
     FACTS = 'facts'
     LEAKS = 'leaks'
+    MOVIES = 'movies'
+    SERIES = 'series'
 
 class Content(models.Model):
     id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
@@ -86,6 +88,10 @@ class Content(models.Model):
             return reverse('content:fact-detail', kwargs={'id':self.id})
         elif self.category == 'stories':
             return reverse('content:story-detail', kwargs={'id':self.id})
+        elif self.category == 'movies':
+            return reverse('content:movie-detail', kwargs={'id':self.id})
+        elif self.category == 'series':
+            return reverse('content:series-detail', kwargs={'id':self.id})
         else:
             return reverse('content:leak-detail', kwargs={'id':self.id})
 

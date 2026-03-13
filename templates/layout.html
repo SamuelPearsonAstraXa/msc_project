@@ -33,9 +33,9 @@
                 <!-- <li><a href="#">Home</a></li> -->
                 <li><a href="{% url 'content:stories' %}">Stories</a></li>
                 <li><a href="{% url 'content:leaks' %}">Leaks</a></li>
+                <li><a href="{% url 'content:movies' %}">Movies</a></li>
+                <li><a href="{% url 'content:series' %}">Series</a></li>
                 <li><a href="{% url 'content:facts' %}">Did You Know?</a></li>
-                <li><a href="{% url 'movies:home' %}">Movies</a></li>
-                <li><a href="{% url 'series:home' %}">Series</a></li>
                 <li><a href="{% url 'core:contact' %}">Contact us</a></li>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}
@@ -54,9 +54,9 @@
                 <!-- <li><a href="#">Home</a></li> -->
                 <li><a href="{% url 'content:stories' %}"><span>Stories</span></a></li>
                 <li><a href="{% url 'content:leaks' %}">Leaks</a></li>
-                <li><a href="{% url 'content:facts' %}">Did You Know?</a></li>
                 <li><a href="{% url 'movies:home' %}">Movies</a></li>
                 <li><a href="{% url 'series:home' %}">Series</a></li>
+                <li><a href="{% url 'content:facts' %}">Did You Know?</a></li>
                 <li><a href="{% url 'core:contact' %}">Contact us</a></li>
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_staff %}

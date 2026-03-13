@@ -21,6 +21,18 @@ urlpatterns = [
     path('leaks/<str:id>/', views.LeakDetailView.as_view(), name='leak-detail'),
     path('leaks/<str:id>/delete/', views.DeleteLeakView.as_view(), name='delete-leak'),
     path('leaks/<str:id>/update/', views.UpdateContentView.as_view(), name='update-leak'),
+    
+    path('movies/', views.MoviesView.as_view(), name='movies'),
+    path('fetch_movies/', views.fetch_movies, name='fetch_movies'),
+    path('movies/<str:id>/', views.MovieDetailView.as_view(), name='movie-detail'),
+    path('movies/<str:id>/delete/', views.DeleteMovieView.as_view(), name='delete-movie'),
+    path('movies/<str:id>/update/', views.UpdateContentView.as_view(), name='update-movie'),
+    
+    path('series/', views.SeriesView.as_view(), name='series'),
+    path('fetch_series/', views.fetch_series, name='fetch_series'),
+    path('series/<str:id>/', views.SeriesDetailView.as_view(), name='series-detail'),
+    path('series/<str:id>/delete/', views.DeleteSeriesView.as_view(), name='delete-series'),
+    path('series/<str:id>/update/', views.UpdateContentView.as_view(), name='update-series'),
    
     path('stories/', views.StoriesView.as_view(), name='stories'),
     path('fetch_stories/', views.fetch_stories, name='fetch_stories'),

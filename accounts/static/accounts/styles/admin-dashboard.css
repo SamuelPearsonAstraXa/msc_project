@@ -5,3 +5,8 @@ main{
 .ad-wrapper{
     display: none;
 }
+
+.stat-card.inactive,
+.quick-actions a.inactive{
+    display: none;
+}

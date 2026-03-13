@@ -90,6 +90,12 @@ switch (location.href) {
     case 'http://127.0.0.1:8000/content/stories/':
         fetch_posts('stories')
         break;
+    case 'http://127.0.0.1:8000/content/movies/':
+        fetch_posts('movies')
+        break;
+    case 'http://127.0.0.1:8000/content/series/':
+        fetch_posts('series')
+        break;
     default:
         fetch_all_posts()
         break;

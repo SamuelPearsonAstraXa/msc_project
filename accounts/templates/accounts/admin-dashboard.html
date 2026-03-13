@@ -20,37 +20,37 @@
     <!-- Stats Cards -->
         <section class="stats-grid">
 
-            <a href="{% url 'movies:home' %}" class="stat-card">
+            <a href="{% url 'movies:home' %}" class="stat-card inactive">
                 <h3>Total Movies</h3>
                 <p>{{ movies.count }}</p>
             </a>
 
-            <a href="{% url 'movies:actors' %}" class="stat-card">
+            <a href="{% url 'movies:actors' %}" class="stat-card inactive">
                 <h3>Total Actors</h3>
                 <p>{{ actors.count }}</p>
             </a>
 
-            <a href="{% url 'series:home' %}" class="stat-card">
+            <a href="{% url 'series:home' %}" class="stat-card inactive">
                 <h3>Total Series</h3>
                 <p>{{ series.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a class="stat-card inactive">
                 <h3>Total Seasons</h3>
                 <p>{{ seasons.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a class="stat-card inactive">
                 <h3>Total Episodes</h3>
                 <p>{{ episodes.count }}</p>
             </a>
 
             <a href="{% url 'content:home' %}" class="stat-card">
-                <h3>Total Contents</h3>
+                <h3>Total Posts</h3>
                 <p>{{ contents.count }}</p>
             </a>
 
-            <a href="{% url 'content:home' %}" class="stat-card">
+            <a href="{% url 'content:home' %}" class="stat-card inactive">
                 <h3>Total Posts</h3>
                 <p>{{ posts.count }}</p>
             </a>
@@ -60,12 +60,12 @@
                 <p>{{ messages.count }}</p>
             </a>
 
-            <a href="{% url 'movies:genres' %}" class="stat-card">
+            <a href="{% url 'movies:genres' %}" class="stat-card inactive">
                 <h3>Total Genres</h3>
                 <p>{{ genres.count }}</p>
             </a>
 
-            <a class="stat-card">
+            <a class="stat-card inactive">
                 <h3>Total Tags</h3>
                 <p>{{ tags.count }}</p>
             </a>
@@ -78,15 +78,15 @@
             <h2>Quick Actions</h2>
 
             <div class="actions-grid">
-                <a href="{% url 'movies:create-movie' %}">Create Movie</a>
-                <a href="{% url 'movies:create-actor' %}">Create Actor</a>
-                <a href="{% url 'series:create-series' %}">Create Series</a>
-                <a href="{% url 'series:create-season' %}">Create Season</a>
-                <a href="{% url 'series:create-episode' %}">Create Episode</a>
-                <a href="{% url 'content:create-post' %}">Create Post</a>
-                <a href="{% url 'content:create-content' %}">Create Content</a>
-                <a href="{% url 'content:create-tag' %}">Create Tag</a>
-                <a href="{% url 'movies:create-genre' %}">Create Genre</a>
+                <a class="inactive" href="{% url 'movies:create-movie' %}">Create Movie</a>
+                <a class="inactive" href="{% url 'movies:create-actor' %}">Create Actor</a>
+                <a class="inactive" href="{% url 'series:create-series' %}">Create Series</a>
+                <a class="inactive" href="{% url 'series:create-season' %}">Create Season</a>
+                <a class="inactive" href="{% url 'series:create-episode' %}">Create Episode</a>
+                <a class="inactive" href="{% url 'content:create-post' %}">Create Post</a>
+                <a class="" href="{% url 'content:create-content' %}">Create Content</a>
+                <a class="inactive" href="{% url 'content:create-tag' %}">Create Tag</a>
+                <a class="inactive" href="{% url 'movies:create-genre' %}">Create Genre</a>
             </div>
 
         </section>

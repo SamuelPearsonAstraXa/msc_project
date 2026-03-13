@@ -25,7 +25,8 @@ class UpdateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request, id):
         content = get_object_or_404(Content, id=id)
         return render(request, "content/edit_content.html", {
-            "content": content
+            "content": content,
+            "title":content.title
         })
 
     def post(self, request, id):
@@ -323,6 +324,77 @@ class LeaksView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Leaks'
         return context
+ 
+class DeleteMovieView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
+    template_name = 'content/delete_movie.html'
+    model = Content
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+    success_url = '/content/movies/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
+
+class MovieDetailView(DetailView):
+    template_name = 'content/movie_detail.html'
+    model = Content
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Movie'
+        context['related_posts'] = Content.objects.filter(category=self.object.category).order_by('-create_date')
+        return context
+
+class MoviesView(ListView):
+    template_name = 'content/movies.html'
+    model = Content
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Movies'
+        return context
+
+class DeleteSeriesView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'request.user.is_staff'
+    permission_denied_message = 'Oh, sorry fan. Nice try!'
+    template_name = 'content/delete_series.html'
+    model = Content
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+    success_url = '/content/series/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Delete {self.object.title}'
+        return context
+
+
+class SeriesDetailView(DetailView):
+    template_name = 'content/movie_detail.html'
+    model = Content
+    context_object_name = 'post'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Series'
+        context['related_posts'] = Content.objects.filter(category=self.object.category).order_by('-create_date')
+        return context
+
+class SeriesView(ListView):
+    template_name = 'content/series.html'
+    model = Content
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Series'
+        return context
     
 class StoryDetailView(DetailView):
     template_name = 'content/story_detail.html'
@@ -385,6 +457,34 @@ def fetch_stories(request):
 def fetch_facts(request):
     posts = []
     p_results = Content.objects.filter(category='facts').order_by('-create_date')
+    for p_result in p_results:
+        result = {
+            'id': p_result.id,
+            'title': p_result.title,
+            'thumbnail': p_result.thumbnail.url,
+            'category': p_result.category,
+            'slug': p_result.slug,
+        }
+        posts.append(result)
+    return JsonResponse({'my_response':'This is the response.','posts':posts})
+    
+def fetch_movies(request):
+    posts = []
+    p_results = Content.objects.filter(category='movies').order_by('-create_date')
+    for p_result in p_results:
+        result = {
+            'id': p_result.id,
+            'title': p_result.title,
+            'thumbnail': p_result.thumbnail.url,
+            'category': p_result.category,
+            'slug': p_result.slug,
+        }
+        posts.append(result)
+    return JsonResponse({'my_response':'This is the response.','posts':posts})
+
+def fetch_series(request):
+    posts = []
+    p_results = Content.objects.filter(category='series').order_by('-create_date')
     for p_result in p_results:
         result = {
             'id': p_result.id,
