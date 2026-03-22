@@ -1,4 +1,9 @@
 const posts_container = document.getElementById("posts_container");
+const movies_container = document.getElementById("movies_container");
+const series_container = document.getElementById("series_container");
+const facts_container = document.getElementById("facts_container");
+const leaks_container = document.getElementById("leaks_container");
+const stories_container = document.getElementById("stories_container");
 const loader = document.querySelector('.loader');
 
 const faders = document.querySelectorAll(".post-card");
@@ -21,20 +26,19 @@ async function fetch_posts() {
         const results = await response.json();
         const posts = results.posts
         // const container = document.getElementById("categoryPosts");
-        posts_container.innerHTML = "";
+        // posts_container.innerHTML = "";
 
         posts.forEach((post, index) => {
-            // Insert ad after 3rd post
-            if (index === 3) {
-                posts_container.innerHTML += `
-                    <div class="ad ad-infeed">
-                        <p>Advertisement</p>
-                    </div>
-                `;
-            }
+            // if (index === 3) {
+            //     posts_container.innerHTML += `
+            //         <div class="ad ad-infeed">
+            //             <p>Advertisement</p>
+            //         </div>
+            //     `;
+            // }
 
             if (post.category === 'leaks') {
-                posts_container.innerHTML += `
+                leaks_container.innerHTML += `
                     <a href='/content/${post.category}/${post.id}/' class="post-card">
                         <img src="${post.thumbnail}" alt="${post.title}">
                         <div class="content">
@@ -44,7 +48,27 @@ async function fetch_posts() {
                     </a>
                 `;
             } else if (post.category === 'stories') {
-                posts_container.innerHTML += `
+                stories_container.innerHTML += `
+                    <a href='/content/${post.category}/${post.id}/' class="post-card">
+                        <img src="${post.thumbnail}" alt="${post.title}">
+                        <div class="content">
+                            <h4>${post.title}</h4>
+                        </div>
+                        <p class='post-type'>Story</p>
+                    </a>
+                `;
+            } else if (post.category === 'movies') {
+                movies_container.innerHTML += `
+                    <a href='/content/${post.category}/${post.id}/' class="post-card">
+                        <img src="${post.thumbnail}" alt="${post.title}">
+                        <div class="content">
+                            <h4>${post.title}</h4>
+                        </div>
+                        <p class='post-type'>Story</p>
+                    </a>
+                `;
+            } else if (post.category === 'series') {
+                series_container.innerHTML += `
                     <a href='/content/${post.category}/${post.id}/' class="post-card">
                         <img src="${post.thumbnail}" alt="${post.title}">
                         <div class="content">
@@ -54,7 +78,7 @@ async function fetch_posts() {
                     </a>
                 `;
             } else {
-                posts_container.innerHTML += `
+                facts_container.innerHTML += `
                     <a href='/content/${post.category}/${post.id}/' class="post-card">
                         <img src="${post.thumbnail}" alt="${post.title}">
                         <div class="content">

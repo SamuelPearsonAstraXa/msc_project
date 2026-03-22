@@ -128,15 +128,31 @@ footer ul li a:hover{
 }
 
 /* ================= POSTS ===================== */
+.posts-section{
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 3rem;
+}
+
+.posts-section h3{
+    background: var(--accent-gradient);
+    color: var(--text-main);
+    border-radius: 0 1rem 1rem 0;
+    padding: 1rem;
+    font-size: 1.6rem;
+    width: fit-content;
+}
+
 .posts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .post-card {
-    background: var(--bg-card);
+    background: var(--bg-soft);
     border-radius: var(--radius);
     display: block;
     overflow: hidden;
@@ -164,6 +180,7 @@ footer ul li a:hover{
 .post-card .post-type{
     position: absolute;
     top: 2rem;
+    display: none;
     left: 0;
     background: var(--accent-gradient);
     color: white;
@@ -238,6 +255,12 @@ footer ul li a:hover{
 
 .create-container button:hover {
     opacity: 0.8;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px;
 }
 
 /* AUTH PAGES */
