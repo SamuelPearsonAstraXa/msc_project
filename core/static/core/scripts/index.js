@@ -28,69 +28,69 @@ async function fetch_posts() {
         // const container = document.getElementById("categoryPosts");
         // posts_container.innerHTML = "";
 
-        posts.forEach((post, index) => {
-            // if (index === 3) {
-            //     posts_container.innerHTML += `
-            //         <div class="ad ad-infeed">
-            //             <p>Advertisement</p>
-            //         </div>
-            //     `;
-            // }
+        // posts.forEach((post, index) => {
+        //     // if (index === 3) {
+        //     //     posts_container.innerHTML += `
+        //     //         <div class="ad ad-infeed">
+        //     //             <p>Advertisement</p>
+        //     //         </div>
+        //     //     `;
+        //     // }
 
-            if (post.category === 'leaks') {
-                leaks_container.innerHTML += `
-                    <a href='/content/${post.category}/${post.id}/' class="post-card">
-                        <img src="${post.thumbnail}" alt="${post.title}">
-                        <div class="content">
-                            <h4>${post.title}</h4>
-                        </div>
-                        <p class='post-type'>Leak</p>
-                    </a>
-                `;
-            } else if (post.category === 'stories') {
-                stories_container.innerHTML += `
-                    <a href='/content/${post.category}/${post.id}/' class="post-card">
-                        <img src="${post.thumbnail}" alt="${post.title}">
-                        <div class="content">
-                            <h4>${post.title}</h4>
-                        </div>
-                        <p class='post-type'>Story</p>
-                    </a>
-                `;
-            } else if (post.category === 'movies') {
-                movies_container.innerHTML += `
-                    <a href='/content/${post.category}/${post.id}/' class="post-card">
-                        <img src="${post.thumbnail}" alt="${post.title}">
-                        <div class="content">
-                            <h4>${post.title}</h4>
-                        </div>
-                        <p class='post-type'>Story</p>
-                    </a>
-                `;
-            } else if (post.category === 'series') {
-                series_container.innerHTML += `
-                    <a href='/content/${post.category}/${post.id}/' class="post-card">
-                        <img src="${post.thumbnail}" alt="${post.title}">
-                        <div class="content">
-                            <h4>${post.title}</h4>
-                        </div>
-                        <p class='post-type'>Story</p>
-                    </a>
-                `;
-            } else {
-                facts_container.innerHTML += `
-                    <a href='/content/${post.category}/${post.id}/' class="post-card">
-                        <img src="${post.thumbnail}" alt="${post.title}">
-                        <div class="content">
-                            <h4>${post.title}</h4>
-                        </div>
-                        <p class='post-type'>Fact</p>
-                    </a>
-                `;
-            }
+        //     if (post.category === 'leaks') {
+        //         leaks_container.innerHTML += `
+        //             <a href='/content/${post.category}/${post.id}/' class="post-card">
+        //                 <img src="${post.thumbnail}" alt="${post.title}">
+        //                 <div class="content">
+        //                     <h4>${post.title}</h4>
+        //                 </div>
+        //                 <p class='post-type'>Leak</p>
+        //             </a>
+        //         `;
+        //     } else if (post.category === 'stories') {
+        //         stories_container.innerHTML += `
+        //             <a href='/content/${post.category}/${post.id}/' class="post-card">
+        //                 <img src="${post.thumbnail}" alt="${post.title}">
+        //                 <div class="content">
+        //                     <h4>${post.title}</h4>
+        //                 </div>
+        //                 <p class='post-type'>Story</p>
+        //             </a>
+        //         `;
+        //     } else if (post.category === 'movies') {
+        //         movies_container.innerHTML += `
+        //             <a href='/content/${post.category}/${post.id}/' class="post-card">
+        //                 <img src="${post.thumbnail}" alt="${post.title}">
+        //                 <div class="content">
+        //                     <h4>${post.title}</h4>
+        //                 </div>
+        //                 <p class='post-type'>Story</p>
+        //             </a>
+        //         `;
+        //     } else if (post.category === 'series') {
+        //         series_container.innerHTML += `
+        //             <a href='/content/${post.category}/${post.id}/' class="post-card">
+        //                 <img src="${post.thumbnail}" alt="${post.title}">
+        //                 <div class="content">
+        //                     <h4>${post.title}</h4>
+        //                 </div>
+        //                 <p class='post-type'>Story</p>
+        //             </a>
+        //         `;
+        //     } else {
+        //         facts_container.innerHTML += `
+        //             <a href='/content/${post.category}/${post.id}/' class="post-card">
+        //                 <img src="${post.thumbnail}" alt="${post.title}">
+        //                 <div class="content">
+        //                     <h4>${post.title}</h4>
+        //                 </div>
+        //                 <p class='post-type'>Fact</p>
+        //             </a>
+        //         `;
+        //     }
 
             
-        });
+        // });
     } catch (error) {
         console.error(error.message)
     }

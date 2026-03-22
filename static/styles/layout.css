@@ -135,6 +135,37 @@ footer ul li a:hover{
     margin-top: 3rem;
 }
 
+.posts-section .explore-more-link{
+    color: var(--accent);
+    display: block;
+    margin-top: 3rem;
+    transition: opacity 500ms ease-in-out;
+    width: max-content;
+}
+
+.posts-section .explore-more-link:hover{
+    opacity: 0.5;
+}
+
+.posts-section .explore-more-link i{
+    vertical-align: middle;
+}
+
+.posts-section .explore-more-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+.posts-section .explore-more-link:hover::after {
+    width: 100%;
+}
+
 .posts-section h3{
     background: var(--accent-gradient);
     color: var(--text-main);

@@ -102,6 +102,11 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
         context['trending_content'] = Content.objects.filter(is_trending=True)[0]
+        context['leaks'] = Content.objects.filter(category='leaks').order_by('-create_date')[:15]
+        context['stories'] = Content.objects.filter(category='stories').order_by('-create_date')[:15]
+        context['movies'] = Content.objects.filter(category='movies').order_by('-create_date')[:15]
+        context['series'] = Content.objects.filter(category='series').order_by('-create_date')[:15]
+        context['facts'] = Content.objects.filter(category='facts').order_by('-create_date')[:15]
         return context
     
 def fetch_search_results(request):

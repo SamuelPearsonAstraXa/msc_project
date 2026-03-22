@@ -70,26 +70,119 @@
         <!-- POSTS GRID -->
         <section id="posts_container">
             <!-- JS inserts posts here -->
-             <section class="posts-section">
+            <section class="posts-section">
                 <h3>Movies</h3>
                 <div  class="posts" id="movies_container"></div>
-             </section>
-             <section class="posts-section">
+                <div class="posts">
+                    {% for movie in movies %}
+                        <a href="{% url 'content:movie-detail' movie.id %}" class="post-card">
+                            <img src="{{ movie.thumbnail.url }}" alt="{{ movie.title }}">
+                            <div class="content">
+                                <h4>{{ movie.title }}</h4>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No movie available.</p>
+                    {% endfor %}
+                </div>
+                {% if movies.count >= 15 %}
+                    <div style="position: relative; width: max-content;">
+                        <a href="" class="explore-more-link">Explore more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </section>
+
+            <!-- Series section -->
+            <section class="posts-section">
                 <h3>Series</h3>
                 <div  class="posts" id="series_container"></div>
-             </section>
-             <section class="posts-section">
+                <div class="posts">
+                    {% for series in series %}
+                        <a href="{% url 'content:series-detail' series.id %}" class="post-card">
+                            <img src="{{ series.thumbnail.url }}" alt="{{ series.title }}">
+                            <div class="content">
+                                <h4>{{ series.title }}</h4>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No series available.</p>
+                    {% endfor %}
+                </div>
+                {% if series.count >= 15 %}
+                    <div style="position: relative; width: max-content;">
+                        <a href="" class="explore-more-link">Explore more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </section>
+
+            <!-- Facts section -->
+            <section class="posts-section">
                 <h3>Facts</h3>
                 <div  class="posts" id="facts_container"></div>
-             </section>
-             <section class="posts-section">
+                <div class="posts">
+                    {% for fact in facts %}
+                        <a href="{% url 'content:fact-detail' fact.id %}" class="post-card">
+                            <img src="{{ fact.thumbnail.url }}" alt="{{ fact.title }}">
+                            <div class="content">
+                                <h4>{{ fact.title }}</h4>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No fact available.</p>
+                    {% endfor %}
+                </div>
+                {% if facts.count >= 15 %}
+                    <div style="position: relative; width: max-content;">
+                        <a href="" class="explore-more-link">Explore more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </section>
+
+            <!-- Stories section -->
+            <section class="posts-section">
                 <h3>Stories</h3>
                 <div  class="posts" id="stories_container"></div>
-             </section>
-             <section class="posts-section">
+                <div class="posts">
+                    {% for story in stories %}
+                        <a href="{% url 'content:story-detail' story.id %}" class="post-card">
+                            <img src="{{ story.thumbnail.url }}" alt="{{ story.title }}">
+                            <div class="content">
+                                <h4>{{ story.title }}</h4>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No story available.</p>
+                    {% endfor %}
+                </div>
+                {% if stories.count >= 15 %}
+                    <div style="position: relative; width: max-content;">
+                        <a href="" class="explore-more-link">Explore more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </section>
+
+            <!-- Leaks section -->
+            <section class="posts-section">
                 <h3>Leaks</h3>
                 <div  class="posts" id="leaks_container"></div>
-             </section>
+                <div class="posts">
+                    {% for leak in leaks %}
+                        <a href="{% url 'content:leak-detail' leak.id %}" class="post-card">
+                            <img src="{{ leak.thumbnail.url }}" alt="{{ leak.title }}">
+                            <div class="content">
+                                <h4>{{ leak.title }}</h4>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No leak available.</p>
+                    {% endfor %}
+                </div>
+                {% if leaks.count >= 15 %}
+                    <div style="position: relative; width: max-content;">
+                        <a href="" class="explore-more-link">Explore more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </section>
         </section>
 
     </main>
