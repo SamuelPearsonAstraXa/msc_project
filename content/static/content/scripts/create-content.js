@@ -1,5 +1,7 @@
 let blocksContainer = document.getElementById("blocksContainer");
 const create_content_form = document.getElementById("create-content-form");
+const loader = document.querySelector('.loader');
+const response_msg = document.getElementById("response_msg");
 
 function addTextBlock() { createBlock("text"); }
 function addImageBlock() { createBlock("image"); }
@@ -68,6 +70,8 @@ function moveDown(btn) {
 document.getElementById("publishBtn").addEventListener("click", function (e) {
 
     e.preventDefault();
+    loader.style.display = 'block';
+    response_msg.style.display = 'none';
 
     const formData = new FormData();
 
@@ -115,21 +119,23 @@ document.getElementById("publishBtn").addEventListener("click", function (e) {
     .then(data => {
 
         if (data.success) {
-            document.getElementById("response_msg").innerHTML =
+            loader.style.display = 'none';
+            response_msg.innerHTML =
                 `<p style='color:green;'>Post uploaded successfully.</p>`;
 
             setTimeout(() => {
                 window.location = data.success_url;
             }, 1500);
         } else {
-            document.getElementById("response_msg").innerHTML =
+            loader.style.display = 'none';
+            response_msg.innerHTML =
                 `<p style='color:red;'>${data.error}</p>`;
         }
 
     })
     .catch(error => {
         console.error(error);
-        document.getElementById("response_msg").innerHTML =
+        response_msg.innerHTML =
             `<p style='color:red;'>Upload failed.</p>`;
     });
 });

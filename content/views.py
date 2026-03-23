@@ -171,6 +171,7 @@ class CreateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
             })
 
         except Exception as e:
+            print(e)
             return JsonResponse({
                 "error": str(e)
             }, status=400)
