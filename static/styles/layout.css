@@ -189,7 +189,7 @@ footer ul li a:hover{
     overflow: hidden;
     transition: var(--transition);
     cursor: pointer;
-    color: var(--text-muted);
+    color: var(--text-main);
     position: relative;
 }
 
