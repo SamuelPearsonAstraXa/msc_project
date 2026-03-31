@@ -25,8 +25,8 @@
         <a class="update-link" href="{% url 'content:update-story' post.id %}"><i class="fas fa-pencil"></i> &nbsp; Update</a>
     {% endif %}
 
-    <h1>{{ post.title }}</h1>
-    <div class="content-image">
+    <h1>{{ post.title }}</h1><br>
+    <div style="display: none;" class="content-image">
         <img src="{{ post.thumbnail.url }}" alt="">
     </div>
 
