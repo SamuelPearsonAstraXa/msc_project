@@ -120,6 +120,7 @@ document.getElementById("publishBtn").addEventListener("click", function (e) {
 
         if (data.success) {
             loader.style.display = 'none';
+            response_msg.style.display = 'block';
             response_msg.innerHTML =
                 `<p style='color:green;'>Post uploaded successfully.</p>`;
 
@@ -128,6 +129,7 @@ document.getElementById("publishBtn").addEventListener("click", function (e) {
             }, 1500);
         } else {
             loader.style.display = 'none';
+            response_msg.style.display = 'block';
             response_msg.innerHTML =
                 `<p style='color:red;'>${data.error}</p>`;
         }
