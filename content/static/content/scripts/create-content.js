@@ -137,8 +137,10 @@ document.getElementById("publishBtn").addEventListener("click", function (e) {
     })
     .catch(error => {
         // console.error(error);
+        loader.style.display = 'none';
         response_msg.style.display = 'block';
         response_msg.innerHTML =
             `<p style='color:red;'>Upload failed.</p>`;
+            `<p style='color:red;'>${error}</p>`;
     });
 });
