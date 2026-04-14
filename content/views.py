@@ -148,22 +148,22 @@ class CreateContentView(LoginRequiredMixin, UserPassesTestMixin, View):
 
             subscribers = Subscriber.objects.filter(is_active=True)
 
-            for sub in subscribers:
-                subject = f"New Post: {content.title}"
-                html_content = render_to_string("emails/new_post.html", {
-                    "content": content,
-                    "subscriber": sub
-                })
+            # for sub in subscribers:
+            #     subject = f"New Post: {content.title}"
+            #     html_content = render_to_string("emails/new_post.html", {
+            #         "content": content,
+            #         "subscriber": sub
+            #     })
 
-                email = EmailMultiAlternatives(
-                    subject,
-                    "",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [sub.email]
-                )
+            #     email = EmailMultiAlternatives(
+            #         subject,
+            #         "",
+            #         settings.DEFAULT_FROM_EMAIL,
+            #         [sub.email]
+            #     )
 
-                email.attach_alternative(html_content, "text/html")
-                email.send()
+            #     email.attach_alternative(html_content, "text/html")
+            #     email.send()
 
             return JsonResponse({
                 "success": True,
